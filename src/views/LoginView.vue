@@ -1,14 +1,8 @@
 <template>
   <div>
-    <group>
-      <cell :title="$t('My Account')" :value="$t('Protected')" @click.native="onClick"></cell>
-      <cell :title="$t('Money')" @click.native="onClick" :is-loading="!money" :value="money"></cell>
-      <cell :title="$t('Withdraw')" disabled is-link></cell>
-    </group>
-    <view-box>sdfsdf</view-box>
-  
-    <web class="webview" :src="url | https"></web>
-    <text class="fixed-button" @click="jump(`/`)">back</text>
+    <view-box>
+       <text style='font-family:iconfont4;font-size:60;color:green'>&#xe71c;&#xe60b;</text>
+    </view-box>
   </div>
 </template>
 
@@ -31,8 +25,6 @@
 </style>
 
 <script>
-
-import { Cell, CellBox, CellFormPreview, Group, Badge } from 'vux'
 export default {
   mounted () {
     setTimeout(() => {
@@ -40,11 +32,7 @@ export default {
     }, 2000)
   },
   components: {
-    Group,
-    Cell,
-    CellFormPreview,
-    CellBox,
-    Badge
+    
   },
   methods: {
     onClick () {

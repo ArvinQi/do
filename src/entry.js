@@ -5,7 +5,6 @@ import store from './store'
 import { sync } from 'vuex-router-sync'
 import * as filters from './filters'
 import mixins from './mixins'
-
 // sync the router with the vuex store.
 // this registers `store.state.route`
 sync(store, router)
