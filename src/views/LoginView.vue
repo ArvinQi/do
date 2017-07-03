@@ -1,62 +1,74 @@
 <template>
   <div>
-    <view-box>
-       <text style='font-family:iconfont4;font-size:60;color:green'>&#xe71c;&#xe60b;</text>
-    </view-box>
+    <div class="header">
+      <text>login</text>
+    </div>
+    <div class="login">
+      <input v-model="loginName" ref="loginName" type="text" placeholder="1email/username" class="input"></input>
+      <input v-model="loginPass" type="password" placeholder="password" class="input"></input>
+      <text class="button" value="Login" @click="login"></text>
+    </div>
+
   </div>
 </template>
 
 <style scoped>
-.webview {
-  flex: 1;
-}
+  .login {
+    padding: .2rem;
+  }
 
-.fixed-button {
-  position: absolute;
-  bottom: 50px;
-  right: 50px;
-  background-color: #FC6621;
-  border-radius: 10px;
-  width: 120px;
-  padding: 15px;
-  color: white;
-  text-align: center;
-}
+  .button {
+    font-size: 36;
+    width: 100%;
+    color: #41B883;
+    text-align: center;
+    padding-top: 10;
+    padding-bottom: 10;
+    border-width: 2;
+    border-style: solid;
+    margin-right: 20;
+    border-color: rgb(162, 217, 192);
+    background-color: rgba(162, 217, 192, 0.2);
+  }
+
+  .input {
+    font-size: 1rem;
+    height: 1rem;
+    width: 100%;
+    border-bottom: #ddd 2px solid;
+  }
 </style>
 
 <script>
-export default {
-  mounted () {
-    setTimeout(() => {
-      this.money = -1024
-    }, 2000)
-  },
-  components: {
-    
-  },
-  methods: {
-    onClick () {
-      console.log('on click')
-    }
-  },
-  data () {
-    return {
-      list: [{
-        label: 'Apple',
-        value: '3.29'
-      }, {
-        label: 'Banana',
-        value: '1.04'
-      }, {
-        label: 'Fish',
-        value: '8.00'
-      }],
-      money: null,
-      showContent001: false,
-      showContent002: false,
-      showContent003: false,
-      showContent004: false
+  import {
+    mapActions,
+    mapMutations,
+    mapGetters,
+    mapState
+  } from 'vuex'
+  import Header from '../components/header.vue'
+  export default {
+    data() {
+      return {
+        loginName: "",
+        loginPass: ""
+      }
+    },
+    mounted() {},
+    components: {
+      Header
+    },
+    methods: {
+      updateLoginName(e) {
+        console.log(e.value, this.$refs.loginName)
+        this.loginName = e.value
+      },
+      updateLoginPass(e) {
+        this.loginPass = e.value
+      },
+      login() {
+        console.log('on click', this.loginName, this.loginPass)
+      }
     }
   }
-}
 </script>

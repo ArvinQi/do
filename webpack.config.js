@@ -1,61 +1,169 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+const pathTo = require('path');
+const fs = require('fs-extra');
+const webpack = require('webpack');
 
+const entry = {
+  app: ['' + path.resolve('src', 'entry.js')]
+};
+const weexEntry = {
+  app: ['' + path.resolve('src', 'entry.js')]
+};
+const vueWebTemp = 'temp';
+const hasPluginInstalled = fs.existsSync('./web/plugin.js');
+// let isWin = /^win/.test(process.platform);
+
+
+function getEntryFileContent(entryPath, vueFilePath) {
+  let relativePath = pathTo.relative(pathTo.join(entryPath, '../'), vueFilePath);
+  let contents = '';
+  if (hasPluginInstalled) {
+    const plugindir = pathTo.resolve('./web/plugin.js');
+    contents = 'require(\'' + plugindir + '\') \n';
+  }
+  if (isWin) {
+    relativePath = relativePath.replace(/\\/g, '\\\\');
+  }
+  contents += 'var App = require(\'' + relativePath + '\')\n';
+  contents += 'App.el = \'#root\'\n';
+  contents += 'new Vue(App)\n';
+  return contents;
+}
+
+let fileType = '';
+
+function walk(dir) {
+  dir = dir || '.';
+  const directory = pathTo.join(__dirname, 'src', dir);
+  fs.readdirSync(directory)
+    .forEach(file => {
+      const fullpath = pathTo.join(directory, file);
+      const stat = fs.statSync(fullpath);
+      const extname = pathTo.extname(fullpath);
+      if (stat.isFile() && extname === '.vue' || extname === '.we') {
+        if (!fileType) {
+          fileType = extname;
+        }
+        if (fileType && extname !== fileType) {
+          console.log('Error: This is not a good practice when you use ".we" and ".vue" togither!');
+        }
+        const name = pathTo.join(dir, pathTo.basename(file, extname));
+        if (extname === '.vue') {
+          const entryFile = pathTo.join(vueWebTemp, dir, pathTo.basename(file, extname) + '.js');
+          fs.outputFileSync(pathTo.join(entryFile), getEntryFileContent(entryFile, fullpath));
+
+          entry[name] = pathTo.join(__dirname, entryFile) + '?entry=true';
+        }
+        weexEntry[name] = fullpath + '?entry=true';
+      } else if (stat.isDirectory() && file !== 'build' && file !== 'include') {
+        const subdir = pathTo.join(dir, file);
+        walk(subdir);
+      }
+    });
+}
+
+// walk();
 // web need vue-loader
-var plugins = [
+const plugins = [
   // new webpack.optimize.UglifyJsPlugin({minimize: true}),
   new webpack.BannerPlugin({
-    banner: '// { "framework": "Vue" }\n',
+    banner: '// { "framework": ' + (fileType === '.vue' ? '"Vue"' : '"Weex"') + '} \n',
     raw: true,
     exclude: 'Vue'
   })
 ];
-function getBaseConfig () {
-  return {
-    entry: {
-      app: [""+path.resolve('src', 'entry.js')]
+const webConfig = {
+  context: pathTo.join(__dirname, ''),
+  entry,
+  output: {
+    path: pathTo.join(__dirname, 'dist'),
+    filename: '[name].web.js'
+  },
+  module: {
+    // webpack 2.0 
+    rules: [{
+      test: /\.js$/,
+      enforce: 'pre',
+      use: [{
+        loader: 'babel-loader'
+      }],
+      exclude: /node_modules/
     },
-    output: {
-      path: path.resolve(__dirname, 'dist')
+    {
+      test: /\.vue(\?[^?]+)?$/,
+      use: [{
+        loader: 'vue-loader'
+      }]
     },
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          loader: 'babel-loader',
-          exclude: /node_modules/,
-          query: {
-            presets: ['es2015']
-          }
-        }, {
-          test: /\.vue(\?[^?]+)?$/,
-          loaders: []
+    {
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader', 'postcss-loader']
+    },
+    {
+      test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
+      use: [{
+        loader: 'url-loader',
+        options: {
+          limit: 10000
         }
-      ]
+      }]
+    }
+    ]
+  },
+  devServer: {
+    historyApiFallback: true,
+    noInfo: true
+  },
+  devtool: '#eval-source-map',
+  plugins
+};
+const weexConfig = {
+  entry: weexEntry,
+  output: {
+    path: pathTo.join(__dirname, 'dist'),
+    filename: '[name].js'
+  },
+  module: {
+    rules: [{
+      test: /\.js$/,
+      use: [{
+        loader: 'babel-loader'
+      }],
+      exclude: /node_modules/
     },
-    plugins: plugins
-  }
+    {
+      test: /\.vue(\?[^?]+)?$/,
+      use: [{
+        loader: 'weex-loader'
+      }]
+    },
+    {
+      test: /\.we(\?[^?]+)?$/,
+      use: [{
+        loader: 'weex-loader'
+      }]
+    },
+    {
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader', 'postcss-loader']
+    },
+    {
+      test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
+      use: [{
+        loader: 'url-loader',
+        options: {
+          limit: 10000
+        }
+      }]
+    }
+    ]
+  },
+  plugins
+};
+
+exports = [webConfig, weexConfig];
+
+if (fileType === '.we') {
+  exports = weexConfig;
 }
-
-var webConfig = getBaseConfig()
-webConfig.output.filename = '[name].web.js'
-webConfig.module.rules[1].loaders.push('vue-loader')
-
-var nativeConfig = getBaseConfig()
-nativeConfig.output.filename = '[name].weex.js'
-nativeConfig.module.rules[1].loaders.push('weex-loader')
-
-// const vuxLoader = require('vux-loader')
-// webConfig = vuxLoader.merge(webConfig, {
-//   options: {},
-//   plugins: [{
-//     name: 'vux-ui'
-//   }]
-// })
-// nativeConfig = vuxLoader.merge(nativeConfig, {
-//   options: {},
-//   plugins: [{
-//     name: 'vux-ui'
-//   }]
-// })
-module.exports = [webConfig, nativeConfig]
+module.exports = exports;

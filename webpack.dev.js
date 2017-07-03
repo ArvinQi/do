@@ -3,13 +3,14 @@ const webpack = require('webpack');
 const ip = require('quick-local-ip').getLocalIP4();
 const pathTo = require('path');
 const chalk = require('chalk');
-let config = Array.isArray(configs) ? configs[0] : configs;
-let port = "9999"
+const config = Array.isArray(configs) ? configs[0] : configs;
+const port = '9999'
 config.devServer = {
   contentBase: pathTo.join(__dirname, ''),
   compress: true,
   hot: true,
-  port: port,
+  // inline: true,
+  port,
   host: ip,
   public: ip + ':' + port + '/web',
   // publicPath: '/dist/',
