@@ -1,7 +1,9 @@
 // import Vue from 'vue'
 import Vuex from 'vuex'
-import * as actions from './actions'
-import * as mutations from './mutations'
+import app from './modules/app';
+import user from './modules/user';
+import permission from './modules/permission';
+import getters from './getters';
 
 // Vuex is auto installed on the web
 if (WXEnvironment.platform !== 'Web') {
@@ -9,9 +11,11 @@ if (WXEnvironment.platform !== 'Web') {
 }
 
 const store = new Vuex.Store({
-  actions,
-  mutations,
-
+  modules: {
+    app,
+    user,
+    permission
+  },
   state: {
     activeType: null,
     items: {},
@@ -33,16 +37,17 @@ const store = new Vuex.Store({
   },
 
   getters: {
+    ...getters,
     // ids of the items that should be currently displayed based on
     // current list type and current pagination
-    activeIds (state) {
+    activeIds(state) {
       const { activeType, lists, counts } = state
       return activeType ? lists[activeType].slice(0, counts[activeType]) : []
     },
 
     // items that should be currently displayed.
     // this Array may not be fully fetched.
-    activeItems (state, getters) {
+    activeItems(state, getters) {
       return getters.activeIds.map(id => state.items[id]).filter(_ => _)
     }
   }

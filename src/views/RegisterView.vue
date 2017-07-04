@@ -4,9 +4,10 @@
     <div>
       <input v-model="email" type="text" placeholder="email" class="input"></input>
       <input v-model="password" type="password" placeholder="password" class="input"></input>
+      <input v-model="repeatPassword" type="password" placeholder="retype password" class="input"></input>
       <text class="error" v-if="error">{{error}}</text>
       <text class="button" value="loading..." v-if="loading"></text>
-      <text class="button" value="Login" @click="login" v-else></text>
+      <text class="button" value="Register" @click="register" v-else></text>
     </div>
   </div>
 </template>
@@ -32,17 +33,19 @@
     text-align: center;
     box-sizing: border-box;
     outline: none;
+    margin: 20px 40px;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 40px;
     margin-right: 40px;
+    padding: 10px 15px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 15px;
     padding-right: 15px;
     font-size: 48px;
     border-radius: 8px;
-    color: #ffffff;
+    color: #fff;
     background-color: #20a0ff;
     border-color: #20a0ff;
   }
@@ -54,7 +57,7 @@
     margin-left: 40px;
     margin-right: 40px;
     /*placeholder-color: #ccc;*/
-    background-color: #ffffff;
+    background-color: #fff;
     background-image: none;
     border-radius: 8px;
     border: 1px solid #bfcbd9;
@@ -67,6 +70,7 @@
     font-size: inherit;
     line-height: 1;
     outline: none;
+    padding: 3px 10px;
     padding-top: 3px;
     padding-bottom: 3px;
     padding-left: 10px;
@@ -80,7 +84,8 @@
   }
 
   .error {
-    color: #ff4949;
+    display: block;
+    color: #FF4949;
     padding-top: 3px;
     padding-bottom: 3px;
     padding-left: 50px;
@@ -89,19 +94,20 @@
 </style>
 
 <script>
-  import {
-    mapActions,
-    mapMutations,
-    mapGetters,
-    mapState
-  } from 'vuex'
-  const modal = weex.requireModule('modal')
+  // import {
+  //   mapActions,
+  //   mapMutations,
+  //   mapGetters,
+  //   mapState
+  // } from 'vuex'
+  // const modal = weex.requireModule('modal')
 
   export default {
     data() {
       return {
         email: "",
         password: "",
+        repeatPassword: "",
         error: "",
         loading: false
       }
@@ -109,20 +115,22 @@
     mounted() {},
     components: {},
     methods: {
-      login() {
+      register() {
         this.error = "";
         if(!this.email){
           this.error = "Please input the username or email!"
         }else if(!this.password){
           this.error = "Password need!"
+        }else if(this.password != this.repeatPassword){
+          this.error = "Password retype not equal!"
         }else{
           this.loading = true;
-          this.$store.dispatch('LoginByEmail', {
+          this.$store.dispatch('RegisterByEmail', {
             email: this.email,
             password: this.password
           }).then(() => {
             this.loading = false;
-            this.$router.push({ path: '/top' });
+            this.$router.push({ path: '/login' });
             // this.showDialog = true;
           }, (err)=>{
             this.loading = false;

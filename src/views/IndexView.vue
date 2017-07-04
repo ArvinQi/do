@@ -32,17 +32,19 @@
     text-align: center;
     box-sizing: border-box;
     outline: none;
+    margin: 20px 40px;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 40px;
     margin-right: 40px;
+    padding: 10px 15px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 15px;
     padding-right: 15px;
     font-size: 48px;
     border-radius: 8px;
-    color: #ffffff;
+    color: #fff;
     background-color: #20a0ff;
     border-color: #20a0ff;
   }
@@ -54,7 +56,7 @@
     margin-left: 40px;
     margin-right: 40px;
     /*placeholder-color: #ccc;*/
-    background-color: #ffffff;
+    background-color: #fff;
     background-image: none;
     border-radius: 8px;
     border: 1px solid #bfcbd9;
@@ -67,6 +69,7 @@
     font-size: inherit;
     line-height: 1;
     outline: none;
+    padding: 3px 10px;
     padding-top: 3px;
     padding-bottom: 3px;
     padding-left: 10px;
@@ -80,7 +83,8 @@
   }
 
   .error {
-    color: #ff4949;
+    display: block;
+    color: #FF4949;
     padding-top: 3px;
     padding-bottom: 3px;
     padding-left: 50px;
