@@ -5,5 +5,5 @@
     "AppId": "do",
     "CodeSign": "do",
     "Profile": "do",
-    "WeexBundle": "index.js"
+    "WeexBundle": "index.weex.js"
 }

@@ -21,6 +21,7 @@ function createStoriesView (type) {
 export default new Router({
   // mode: 'abstract',
   routes: [
+    { path: '/login', component: LoginView },
     { path: '/top', component: createStoriesView('top') },
     { path: '/new', component: createStoriesView('new') },
     { path: '/show', component: createStoriesView('show') },
@@ -29,7 +30,6 @@ export default new Router({
     { path: '/article/:url(.*)?', component: ArticleView },
     { path: '/item/:id(\\d+)', component: CommentView },
     { path: '/user/:id', component: UserView },
-    { path: '/login', component: LoginView },
     { path: '/', redirect: '/login' }
   ]
 })

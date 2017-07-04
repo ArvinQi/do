@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <div class="header">
-      <text>login</text>
-    </div>
-    <div class="login">
-      <input v-model="loginName" ref="loginName" type="text" placeholder="1email/username" class="input"></input>
+  <div class="login">
+    <text class="logo">D O</text>
+    <div>
+      <input v-model="loginName" type="text" placeholder="email or username" class="input"></input>
       <input v-model="loginPass" type="password" placeholder="password" class="input"></input>
       <text class="button" value="Login" @click="login"></text>
     </div>
@@ -14,28 +12,55 @@
 
 <style scoped>
   .login {
-    padding: .2rem;
+    padding: 20px;
+    background-color: #fff;
   }
-
-  .button {
-    font-size: 36;
-    width: 100%;
-    color: #41B883;
+  .logo{
+    font-size: 60px;
+    color: #663366;
     text-align: center;
-    padding-top: 10;
-    padding-bottom: 10;
-    border-width: 2;
-    border-style: solid;
-    margin-right: 20;
-    border-color: rgb(162, 217, 192);
-    background-color: rgba(162, 217, 192, 0.2);
+  }
+  .button {
+    height: 80px;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 1px solid #bfcbd9;
+    -webkit-appearance: none;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    margin: 20px 40px;
+    padding: 10px 15px;
+    font-size: 48px;
+    border-radius: 8px;
+    color: #fff;
+    background-color: #20a0ff;
+    border-color: #20a0ff;
   }
 
   .input {
-    font-size: 1rem;
-    height: 1rem;
-    width: 100%;
-    border-bottom: #ddd 2px solid;
+    height: 80px;
+    margin: 10px 40px;
+    /*placeholder-color: #ccc;*/
+    background-color: #fff;
+    background-image: none;
+    border-radius: 8px;
+    border: 1px solid #bfcbd9;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #bfcbd9;
+    box-sizing: border-box;
+    color: #1f2d3d;
+    display: inline-block;
+    font-size: inherit;
+    line-height: 1;
+    outline: none;
+    padding: 3px 10px;
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+  }
+  .input:focus{
+    outline: none;
+    border-color: #20a0ff;
   }
 </style>
 
@@ -46,7 +71,6 @@
     mapGetters,
     mapState
   } from 'vuex'
-  import Header from '../components/header.vue'
   export default {
     data() {
       return {
@@ -56,16 +80,8 @@
     },
     mounted() {},
     components: {
-      Header
     },
     methods: {
-      updateLoginName(e) {
-        console.log(e.value, this.$refs.loginName)
-        this.loginName = e.value
-      },
-      updateLoginPass(e) {
-        this.loginPass = e.value
-      },
       login() {
         console.log('on click', this.loginName, this.loginPass)
       }
