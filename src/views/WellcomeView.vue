@@ -4,8 +4,8 @@
     <div>
       <text>Wellcome to D O!</text>
       <div class="links">
-        <text @click="goto('/register')" class="goto">No account, register?</text>
-        <text @click="goto('/login')" class="goto">login?</text>
+        <text @click="jump('/register')" class="goto">No account, register?</text>
+        <text @click="jump('/login')" class="goto">login?</text>
       </div>
     </div>
   </div>
@@ -119,11 +119,6 @@
     mounted() {},
     components: {},
     methods: {
-      goto(url) {
-        this.$router.push({
-          path: url
-        });
-      },
       login() {
         this.error = "";
         if (!this.email) {

@@ -5,7 +5,7 @@ import user from './modules/user';
 import task from './modules/task';
 import permission from './modules/permission';
 import getters from './getters';
-import actions from './actions';
+// import actions from './actions';
 import router from '../router'
 
 // Vuex is auto installed on the web
@@ -42,15 +42,8 @@ const store = new Vuex.Store({
       job: []
     }
   },
-  actions: {
-    ...actions
-  },
   getters: {
     ...getters,
-    // goto
-    gotoUrl(url) {
-      router.push(url)
-    },
     // ids of the items that should be currently displayed based on
     // current list type and current pagination
     activeIds(state) {

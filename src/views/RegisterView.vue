@@ -8,7 +8,7 @@
       <text class="error" v-if="error">{{error}}</text>
       <text class="button" value="loading..." v-if="loading"></text>
       <text class="button" value="Register" @click="register" v-else></text>
-      <text @click="goto('/login')" class="goto">Have a account, back to login?</text>
+      <text @click="jump('/login')" class="goto">Have a account, back to login?</text>
     </div>
   </div>
 </template>

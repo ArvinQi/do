@@ -1,6 +1,7 @@
 
 
 import store from '../store';
+import router from '../router'
 const modal = weex.requireModule('modal')
 
 const stream = weex.requireModule('stream');
@@ -19,6 +20,8 @@ const fetch = opt => {
   }
   if (opt.data) {
     params.body = JSON.stringify(opt.data);
+  } else {
+    params.body = ''
   }
   return new Promise((resolve, reject) => {
     stream.fetch(params, response => {
@@ -29,7 +32,10 @@ const fetch = opt => {
         modal.toast({
           message: error.message,
           duration: 0.8
-        })
+        });
+        if (error.statusCode === 401) {
+          router.push('/login')
+        }
         reject(response);
       }
     })

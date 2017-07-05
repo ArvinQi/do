@@ -171,18 +171,17 @@ const user = {
 
     // 登出
     LogOut({
-      commit,
-      state
+      commit
     }) {
-      return new Promise((resolve, reject) => {
-        logout(state.token).then(() => {
-          commit('SET_TOKEN', '');
-          commit('SET_ROLES', []);
-          Cookies.remove('User-Token');
-          resolve();
-        }).catch(error => {
-          reject(error);
-        });
+      return new Promise(resolve => {
+        // logout(state.token).then(() => {
+        commit('SET_TOKEN', '');
+        commit('SET_ROLES', []);
+        Cookies.remove('User-Token');
+        resolve();
+        // }).catch(error => {
+        //   reject(error);
+        // });
       });
     },
 

@@ -7,7 +7,7 @@
       <text class="error" v-if="error">{{error}}</text>
       <text class="button" value="loading..." v-if="loading"></text>
       <text class="button" value="Login" @click="login" v-else></text>
-      <text class="goto" @click="goto('/register')">No account, register?</text>
+      <text class="goto" @click="jump('/register')">No account, register?</text>
     </div>
   </div>
 </template>
@@ -114,9 +114,6 @@
     mounted() {},
     components: {},
     methods: {
-      goto(url) {
-        this.$router.push({path: url});
-      },
       login() {
         this.error = "";
         if(!this.email){

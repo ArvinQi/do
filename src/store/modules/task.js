@@ -1,5 +1,6 @@
 import {
-  getTasks
+  getTasks,
+  finishTask
 } from '../../api/task';
 import Cookies from 'js-cookie';
 
@@ -56,6 +57,25 @@ const task = {
             return index
           })
           commit('SET_TASKS', tasks);
+          resolve();
+        }).catch(error => {
+          reject(error);
+        });
+      });
+    },
+    FinishTask({
+      commit,
+      state
+    }, task) {
+      return new Promise((resolve, reject) => {
+        task.isFinished = true;
+        finishTask(
+          task._id,
+          state.user_id,
+          task
+        ).then(response => {
+          const data = response.data;
+          commit('FINISH_TASKS', data);
           resolve();
         }).catch(error => {
           reject(error);
