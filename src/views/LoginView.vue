@@ -7,6 +7,7 @@
       <text class="error" v-if="error">{{error}}</text>
       <text class="button" value="loading..." v-if="loading"></text>
       <text class="button" value="Login" @click="login" v-else></text>
+      <text class="goto" @click="goto('/register')">No account, register?</text>
     </div>
   </div>
 </template>
@@ -86,6 +87,10 @@
     padding-left: 50px;
     padding-right: 50px;
   }
+  .goto{
+    color: #F7BA2A;
+    text-align: center;
+  }
 </style>
 
 <script>
@@ -109,6 +114,9 @@
     mounted() {},
     components: {},
     methods: {
+      goto(url) {
+        this.$router.push({path: url});
+      },
       login() {
         this.error = "";
         if(!this.email){
@@ -122,7 +130,9 @@
             password: this.password
           }).then(() => {
             this.loading = false;
-            this.$router.push({ path: '/top' });
+            this.$store.dispatch('GetInfo').then(() => {
+              this.$router.push({ path: '/index' });
+            })
             // this.showDialog = true;
           }, (err)=>{
             this.loading = false;

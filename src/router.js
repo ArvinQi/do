@@ -9,6 +9,7 @@ import RegisterView from './views/RegisterView.vue'
 import ForgetView from './views/ForgetView.vue'
 import IndexView from './views/IndexView.vue'
 import VerifyView from './views/VerifyView.vue'
+import WellcomeView from './views/WellcomeView.vue'
 
 Vue.use(Router)
 
@@ -23,12 +24,12 @@ function createStoriesView(type) {
 }
 
 export const constantRouterMap = [
-  { path: '/', redirect: '/login' },
+  { path: '/', component: LoginView, hidden: true },
+  { path: '/index', component: IndexView, hidden: true },
   { path: '/login', component: LoginView, hidden: true },
   { path: '/register', component: RegisterView, hidden: true },
   { path: '/forget', component: ForgetView, hidden: true },
-  { path: '/index', component: IndexView, hidden: true },
-  { path: '/verify/{code}', component: VerifyView, hidden: true },
+  { path: '/verify/:token', component: VerifyView, hidden: true },
   // { path: '/authredirect', component: authRedirect, hidden: true },
   // { path: '/404', component: Err404, hidden: true },
   // { path: '/401', component: Err401, hidden: true },

@@ -1,22 +1,30 @@
-import { loginByEmail, logout, getInfo, registerByEmail } from '../../api/login';
+import {
+  loginByEmail,
+  logout,
+  getInfo,
+  registerByEmail,
+  verifyEmail
+} from '../../api/login';
 import Cookies from 'js-cookie';
 
 const user = {
   state: {
+    user_id: Cookies.get('User-Id'),
     user: '',
     status: '',
-    email: '',
+    email: Cookies.get('User-Email'),
     code: '',
     uid: undefined,
     auth_type: '',
-    token: Cookies.get('Admin-Token'),
+    token: Cookies.get('User-Token'),
     name: '',
     avatar: '',
     introduction: '',
     roles: [],
     setting: {
       articlePlatform: []
-    }
+    },
+    scope: Cookies.get('User-Scope')
   },
 
   mutations: {
@@ -28,6 +36,12 @@ const user = {
     },
     SET_TOKEN: (state, token) => {
       state.token = token;
+    },
+    SET_USER_ID: (state, user_id) => {
+      state.user_id = user_id;
+    },
+    SET_SCOPE: (state, scope) => {
+      state.scope = scope;
     },
     SET_UID: (state, uid) => {
       state.uid = uid;
@@ -63,14 +77,19 @@ const user = {
 
   actions: {
     // 邮箱登录
-    LoginByEmail({ commit }, userInfo) {
+    LoginByEmail({
+      commit
+    }, userInfo) {
       const email = userInfo.email.trim();
       return new Promise((resolve, reject) => {
         loginByEmail(email, userInfo.password).then(response => {
           const data = response.data;
-          Cookies.set('Admin-Token', response.data.token);
+          Cookies.set('User-Token', data.token);
+          Cookies.set('User-Id', data.user_id);
+          Cookies.set('User-Email', email);
           commit('SET_TOKEN', data.token);
           commit('SET_EMAIL', email);
+          commit('SET_USER_ID', data.user_id);
           resolve();
         }).catch(error => {
           reject(error);
@@ -80,7 +99,9 @@ const user = {
 
 
     // 邮箱注册
-    RegisterByEmail({ commit }, userInfo) {
+    RegisterByEmail({
+      commit
+    }, userInfo) {
       const email = userInfo.email.trim();
       return new Promise((resolve, reject) => {
         registerByEmail(email, userInfo.password).then(response => {
@@ -93,17 +114,36 @@ const user = {
       });
     },
 
-
-    // 获取用户信息
-    GetInfo({ commit, state }) {
+    // 验证邮箱
+    VerifyEmail({
+      commit
+    }, params) {
+      const token = params.token;
       return new Promise((resolve, reject) => {
-        getInfo(state.token).then(response => {
+        verifyEmail(token).then(response => {
           const data = response.data;
-          commit('SET_ROLES', data.role);
-          commit('SET_NAME', data.name);
-          commit('SET_AVATAR', data.avatar);
-          commit('SET_UID', data.uid);
-          commit('SET_INTRODUCTION', data.introduction);
+          commit('SET_EMAIL', data.email);
+          resolve(data);
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    // 获取用户信息
+    GetInfo({
+      commit,
+      state
+    }) {
+      return new Promise((resolve, reject) => {
+        getInfo(state.user_id).then(response => {
+          const data = response.data;
+          Cookies.set('User-Scope', data.scope);
+          // commit('SET_ROLES', data.role);
+          // commit('SET_NAME', data.name);
+          // commit('SET_AVATAR', data.avatar);
+          // commit('SET_UID', data.uid);
+          // commit('SET_INTRODUCTION', data.introduction);
+          commit('SET_SCOPE', data.scope);
           resolve(response);
         }).catch(error => {
           reject(error);
@@ -112,12 +152,15 @@ const user = {
     },
 
     // 第三方验证登录
-    LoginByThirdparty({ commit, state }, code) {
+    LoginByThirdparty({
+      commit,
+      state
+    }, code) {
       return new Promise((resolve, reject) => {
         commit('SET_CODE', code);
         loginByThirdparty(state.status, state.email, state.code, state.auth_type).then(response => {
           commit('SET_TOKEN', response.data.token);
-          Cookies.set('Admin-Token', response.data.token);
+          Cookies.set('User-Token', response.data.token);
           resolve();
         }).catch(error => {
           reject(error);
@@ -127,12 +170,15 @@ const user = {
 
 
     // 登出
-    LogOut({ commit, state }) {
+    LogOut({
+      commit,
+      state
+    }) {
       return new Promise((resolve, reject) => {
         logout(state.token).then(() => {
           commit('SET_TOKEN', '');
           commit('SET_ROLES', []);
-          Cookies.remove('Admin-Token');
+          Cookies.remove('User-Token');
           resolve();
         }).catch(error => {
           reject(error);
@@ -141,20 +187,24 @@ const user = {
     },
 
     // 前端 登出
-    FedLogOut({ commit }) {
+    FedLogOut({
+      commit
+    }) {
       return new Promise(resolve => {
         commit('SET_TOKEN', '');
-        Cookies.remove('Admin-Token');
+        Cookies.remove('User-Token');
         resolve();
       });
     },
 
     // 动态修改权限
-    ChangeRole({ commit }, role) {
+    ChangeRole({
+      commit
+    }, role) {
       return new Promise(resolve => {
         commit('SET_ROLES', [role]);
         commit('SET_TOKEN', role);
-        Cookies.set('Admin-Token', role);
+        Cookies.set('User-Token', role);
         resolve();
       })
     }

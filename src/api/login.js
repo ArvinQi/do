@@ -24,6 +24,12 @@ export function registerByEmail(email, password) {
   });
 }
 
+export function verifyEmail(token) {
+  return fetch({
+    url: '/auth/confirmation?token=' + token,
+    method: 'get'
+  });
+}
 export function logout() {
   return fetch({
     url: '/login/logout',
@@ -31,11 +37,10 @@ export function logout() {
   });
 }
 
-export function getInfo(token) {
+export function getInfo(user_id) {
   return fetch({
-    url: '/user/info',
-    method: 'get',
-    params: { token }
+    url: '/auth/' + user_id,
+    method: 'get'
   });
 }
 

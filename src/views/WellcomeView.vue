@@ -2,13 +2,11 @@
   <div class="login">
     <text class="logo">D O</text>
     <div>
-      <input v-model="email" type="text" placeholder="email" class="input"></input>
-      <input v-model="password" type="password" placeholder="password" class="input"></input>
-      <input v-model="repeatPassword" type="password" placeholder="retype password" class="input"></input>
-      <text class="error" v-if="error">{{error}}</text>
-      <text class="button" value="loading..." v-if="loading"></text>
-      <text class="button" value="Register" @click="register" v-else></text>
-      <text @click="goto('/login')" class="goto">Have a account, back to login?</text>
+      <text>Wellcome to D O!</text>
+      <div class="links">
+        <text @click="goto('/register')" class="goto">No account, register?</text>
+        <text @click="goto('/login')" class="goto">login?</text>
+      </div>
     </div>
   </div>
 </template>
@@ -25,6 +23,11 @@
     text-align: center;
   }
 
+  .links {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   .button {
     height: 80px;
     white-space: nowrap;
@@ -34,19 +37,17 @@
     text-align: center;
     box-sizing: border-box;
     outline: none;
-    margin: 20px 40px;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 40px;
     margin-right: 40px;
-    padding: 10px 15px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 15px;
     padding-right: 15px;
     font-size: 48px;
     border-radius: 8px;
-    color: #fff;
+    color: #ffffff;
     background-color: #20a0ff;
     border-color: #20a0ff;
   }
@@ -58,7 +59,7 @@
     margin-left: 40px;
     margin-right: 40px;
     /*placeholder-color: #ccc;*/
-    background-color: #fff;
+    background-color: #ffffff;
     background-image: none;
     border-radius: 8px;
     border: 1px solid #bfcbd9;
@@ -71,7 +72,6 @@
     font-size: inherit;
     line-height: 1;
     outline: none;
-    padding: 3px 10px;
     padding-top: 3px;
     padding-bottom: 3px;
     padding-left: 10px;
@@ -85,34 +85,33 @@
   }
 
   .error {
-    display: block;
-    color: #FF4949;
+    color: #ff4949;
     padding-top: 3px;
     padding-bottom: 3px;
     padding-left: 50px;
     padding-right: 50px;
   }
-  .goto{
+
+  .goto {
     color: #F7BA2A;
     text-align: center;
   }
 </style>
 
 <script>
-  // import {
-  //   mapActions,
-  //   mapMutations,
-  //   mapGetters,
-  //   mapState
-  // } from 'vuex'
-  // const modal = weex.requireModule('modal')
+  import {
+    mapActions,
+    mapMutations,
+    mapGetters,
+    mapState
+  } from 'vuex'
+  const modal = weex.requireModule('modal')
 
   export default {
     data() {
       return {
         email: "",
         password: "",
-        repeatPassword: "",
         error: "",
         loading: false
       }
@@ -120,24 +119,29 @@
     mounted() {},
     components: {},
     methods: {
-      register() {
+      goto(url) {
+        this.$router.push({
+          path: url
+        });
+      },
+      login() {
         this.error = "";
-        if(!this.email){
+        if (!this.email) {
           this.error = "Please input the username or email!"
-        }else if(!this.password){
+        } else if (!this.password) {
           this.error = "Password need!"
-        }else if(this.password != this.repeatPassword){
-          this.error = "Password retype not equal!"
-        }else{
+        } else {
           this.loading = true;
-          this.$store.dispatch('RegisterByEmail', {
+          this.$store.dispatch('LoginByEmail', {
             email: this.email,
             password: this.password
           }).then(() => {
             this.loading = false;
-            this.$router.push({ path: '/login' });
+            this.$router.push({
+              path: '/index'
+            });
             // this.showDialog = true;
-          }, (err)=>{
+          }, (err) => {
             this.loading = false;
           });
         }

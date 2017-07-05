@@ -2,8 +2,11 @@
 import Vuex from 'vuex'
 import app from './modules/app';
 import user from './modules/user';
+import task from './modules/task';
 import permission from './modules/permission';
 import getters from './getters';
+import actions from './actions';
+import router from '../router'
 
 // Vuex is auto installed on the web
 if (WXEnvironment.platform !== 'Web') {
@@ -14,6 +17,7 @@ const store = new Vuex.Store({
   modules: {
     app,
     user,
+    task,
     permission
   },
   state: {
@@ -27,6 +31,9 @@ const store = new Vuex.Store({
       ask: 15,
       job: 15
     },
+    tasks: {
+
+    },
     lists: {
       top: [],
       new: [],
@@ -35,9 +42,15 @@ const store = new Vuex.Store({
       job: []
     }
   },
-
+  actions: {
+    ...actions
+  },
   getters: {
     ...getters,
+    // goto
+    gotoUrl(url) {
+      router.push(url)
+    },
     // ids of the items that should be currently displayed based on
     // current list type and current pagination
     activeIds(state) {

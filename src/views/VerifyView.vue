@@ -2,11 +2,12 @@
   <div class="login">
     <text class="logo">D O</text>
     <div>
-      <input v-model="email" type="text" placeholder="email" class="input"></input>
+      <text class="info">{{info}}</text>
+      <!--<input v-model="email" type="text" placeholder="email" class="input"></input>
       <input v-model="password" type="password" placeholder="password" class="input"></input>
       <text class="error" v-if="error">{{error}}</text>
       <text class="button" value="loading..." v-if="loading"></text>
-      <text class="button" value="Verify" @click="login" v-else></text>
+      <text class="button" value="Verify" @click="login" v-else></text>-->
     </div>
   </div>
 </template>
@@ -22,7 +23,17 @@
     color: #663366;
     text-align: center;
   }
-
+  .info {
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
   .button {
     height: 80px;
     white-space: nowrap;
@@ -107,10 +118,23 @@
         email: "",
         password: "",
         error: "",
-        loading: false
+        loading: false,
+        info: ""
       }
     },
-    mounted() {},
+    mounted() {
+      const token = this.$route.params.token;
+      this.$store.dispatch('VerifyEmail', {
+        token: token
+      }).then((res) => {
+        modal.toast({
+          message: res.message,
+          duration: 0.8
+        })
+        this.$router.push({ path: '/login' });
+      }, (err)=>{
+      });
+    },
     components: {},
     methods: {
       login() {
