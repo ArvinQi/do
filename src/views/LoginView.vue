@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <text class="logo">D O</text>
+    <text class="login-logo">D O</text>
     <div>
       <input v-model="email" type="text" placeholder="email" class="input"></input>
       <input v-model="password" type="password" placeholder="password" class="input"></input>
@@ -18,7 +18,7 @@
     background-color: #fff;
   }
 
-  .logo {
+  .login-logo {
     font-size: 60px;
     color: #663366;
     text-align: center;

@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <text class="logo">D O</text>
+    <text class="login-logo">D O</text>
     <div>
       <text>Wellcome to D O!</text>
       <div class="links">
@@ -17,7 +17,7 @@
     background-color: #fff;
   }
 
-  .logo {
+  .login-logo {
     font-size: 60px;
     color: #663366;
     text-align: center;

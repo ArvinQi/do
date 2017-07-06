@@ -3,7 +3,7 @@
 import store from '../store';
 import router from '../router'
 const modal = weex.requireModule('modal')
-
+// const storage = weex.requireModule('storage')
 const stream = weex.requireModule('stream');
 
 const fetch = opt => {
@@ -15,6 +15,7 @@ const fetch = opt => {
   params.headers = {
     'Content-Type': 'application/json'
   };
+  // storage.getItem('User-Token', e => {})
   if (store.getters.token) {
     params.headers.authorization = store.getters.token; // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
   }

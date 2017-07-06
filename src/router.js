@@ -24,7 +24,7 @@ function createStoriesView(type) {
 }
 
 export const constantRouterMap = [
-  { path: '/', component: LoginView, hidden: true },
+  { path: '/', component: WellcomeView, hidden: true },
   { path: '/index', component: IndexView, hidden: true },
   { path: '/login', component: LoginView, hidden: true },
   { path: '/register', component: RegisterView, hidden: true },

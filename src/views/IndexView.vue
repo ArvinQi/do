@@ -1,6 +1,6 @@
 <template>
-  <div class="login">
-    <header v-bind:email="email"></header>
+  <div class="login" @appear="initState">
+    <header></header>
     <div class="dashboard">
       <div class="important">
         <div class="block important-urgent">
@@ -10,7 +10,7 @@
             Urgent
           </text>
           <list class="list">
-            <cell @click="finishTask(task)" class="cell" v-for="task in tasks['important-urgent']" v-bind:key="task.id">
+            <cell @click="finishTask(task)" @longpress="showDetails(task)" class="cell" v-for="task in tasks['important-urgent']" v-bind:key="task.id">
               <div class="panel">
                 <text class="task">{{task.title}}</text>
               </div>
@@ -156,6 +156,8 @@
     data() {
       return {}
     },
+    created() {
+    },
     components: {
       Header
     },
@@ -184,9 +186,13 @@
         this.loading = true;
         this.$store.dispatch('FinishTask', task).then(() => {
           this.loading = false;
+          this.$store.dispatch('GetTasks')
         }, (err) => {
           this.loading = false;
         });
+      },
+      showDetails(task) {
+        console.log(task)
       }
     }
   }

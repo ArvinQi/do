@@ -6,7 +6,7 @@ import task from './modules/task';
 import permission from './modules/permission';
 import getters from './getters';
 // import actions from './actions';
-import router from '../router'
+// import router from '../router'
 
 // Vuex is auto installed on the web
 if (WXEnvironment.platform !== 'Web') {
@@ -21,6 +21,10 @@ const store = new Vuex.Store({
     permission
   },
   state: {
+    user_id: '',
+    token: '',
+    email: '',
+    scope: '',
     activeType: null,
     items: {},
     users: {},

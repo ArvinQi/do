@@ -1,22 +1,23 @@
 import {
   loginByEmail,
-  logout,
+  // logout,
   getInfo,
   registerByEmail,
   verifyEmail
 } from '../../api/login';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
+const storage = weex.requireModule('storage')
 
 const user = {
   state: {
-    user_id: Cookies.get('User-Id'),
+    user_id: '',
     user: '',
     status: '',
-    email: Cookies.get('User-Email'),
+    email: '',
     code: '',
     uid: undefined,
     auth_type: '',
-    token: Cookies.get('User-Token'),
+    token: '',
     name: '',
     avatar: '',
     introduction: '',
@@ -24,9 +25,9 @@ const user = {
     setting: {
       articlePlatform: []
     },
-    scope: Cookies.get('User-Scope')
+    scope: ''
   },
-
+  getters: {},
   mutations: {
     SET_AUTH_TYPE: (state, type) => {
       state.auth_type = type;
@@ -84,9 +85,9 @@ const user = {
       return new Promise((resolve, reject) => {
         loginByEmail(email, userInfo.password).then(response => {
           const data = response.data;
-          Cookies.set('User-Token', data.token);
-          Cookies.set('User-Id', data.user_id);
-          Cookies.set('User-Email', email);
+          storage.setItem('User-Token', data.token);
+          storage.setItem('User-Id', data.user_id);
+          storage.setItem('User-Email', email);
           commit('SET_TOKEN', data.token);
           commit('SET_EMAIL', email);
           commit('SET_USER_ID', data.user_id);
@@ -131,23 +132,24 @@ const user = {
     },
     // 获取用户信息
     GetInfo({
-      commit,
-      state
+      commit
     }) {
       return new Promise((resolve, reject) => {
-        getInfo(state.user_id).then(response => {
-          const data = response.data;
-          Cookies.set('User-Scope', data.scope);
-          // commit('SET_ROLES', data.role);
-          // commit('SET_NAME', data.name);
-          // commit('SET_AVATAR', data.avatar);
-          // commit('SET_UID', data.uid);
-          // commit('SET_INTRODUCTION', data.introduction);
-          commit('SET_SCOPE', data.scope);
-          resolve(response);
-        }).catch(error => {
-          reject(error);
-        });
+        storage.getItem('User-Id', e => {
+          getInfo(e.data).then(response => {
+            const data = response.data;
+            storage.setItem('User-Scope', data.scope);
+            // commit('SET_ROLES', data.role);
+            // commit('SET_NAME', data.name);
+            // commit('SET_AVATAR', data.avatar);
+            // commit('SET_UID', data.uid);
+            // commit('SET_INTRODUCTION', data.introduction);
+            commit('SET_SCOPE', data.scope);
+            resolve(response);
+          }).catch(error => {
+            reject(error);
+          });
+        })
       });
     },
 
@@ -160,7 +162,7 @@ const user = {
         commit('SET_CODE', code);
         loginByThirdparty(state.status, state.email, state.code, state.auth_type).then(response => {
           commit('SET_TOKEN', response.data.token);
-          Cookies.set('User-Token', response.data.token);
+          storage.setItem('User-Token', response.data.token);
           resolve();
         }).catch(error => {
           reject(error);
@@ -177,7 +179,7 @@ const user = {
         // logout(state.token).then(() => {
         commit('SET_TOKEN', '');
         commit('SET_ROLES', []);
-        Cookies.remove('User-Token');
+        storage.removeItem('User-Token');
         resolve();
         // }).catch(error => {
         //   reject(error);
@@ -191,7 +193,7 @@ const user = {
     }) {
       return new Promise(resolve => {
         commit('SET_TOKEN', '');
-        Cookies.remove('User-Token');
+        storage.removeItem('User-Token');
         resolve();
       });
     },
@@ -203,7 +205,7 @@ const user = {
       return new Promise(resolve => {
         commit('SET_ROLES', [role]);
         commit('SET_TOKEN', role);
-        Cookies.set('User-Token', role);
+        storage.setItem('User-Token', role);
         resolve();
       })
     }

@@ -7,13 +7,13 @@ export function fetch(path) {
       method: 'GET',
       url: `${baseURL}/${path}.json`,
       type: 'json'
-    }, (response) => {
+    }, response => {
       if (response.status === 200) {
         resolve(response.data)
       } else {
         reject(response)
       }
-    }, (err) => {
+    }, err => {
       console.log(err)
     })
   })

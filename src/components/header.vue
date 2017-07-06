@@ -8,16 +8,17 @@
 
 <style>
   .header {
-    position: relative;
+    /*position: relative;*/
     height: 70px;
     flex-direction: row;
     background-color: #20a0ff;
     justify-content: space-between;
   }
   .logo {
-    position: absolute;
-    width: 375px;
+    /*position: absolute;*/
+    /*width: 375px;*/
     top: 25px;
+    left: -38px;
     font-size: 40px;
     color: #fff;
     text-align: center;
@@ -35,12 +36,17 @@
 </style>
 
 <script>
+  const storage = weex.requireModule('storage')
   export default {
-    props: {
-      email: {
-        type: String,
-        required: true
+    data() {
+      return {
+        email: ''
       }
+    },
+    mounted() {
+      storage.getItem('User-Email', e => {
+        this.email = e.data;
+      })
     }
   }
 </script>
