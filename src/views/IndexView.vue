@@ -1,6 +1,6 @@
 <template>
-  <div class="login" @appear="initState">
-    <header></header>
+  <div class="index" @appear="initState">
+    <app-header title="D O"></app-header>
     <div class="dashboard">
       <div class="important">
         <div class="block important-urgent">
@@ -10,7 +10,7 @@
             Urgent
           </text>
           <list class="list">
-            <cell @click="finishTask(task)" @longpress="showDetails(task)" class="cell" v-for="task in tasks['important-urgent']" v-bind:key="task.id">
+            <cell @click="finishTask(task)" @longpress="jump('/task/'+task._id)" class="cell" v-for="task in tasks['important-urgent']" v-bind:key="task._id">
               <div class="panel">
                 <text class="task">{{task.title}}</text>
               </div>
@@ -63,49 +63,49 @@
         </div>
       </div>
     </div>
+    <div @click="jump('/task/-1')" class="add-task">
+      <div class="add-task-icon">
+        <div class="add-task-icon-before"></div>
+        <div class="add-task-icon-after"></div>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
-  .login {
+  .index {
+    flex-direction: column;
     background-color: #fff;
     align-content: stretch;
-    flex: column;
-    height: 100%;
   }
 
   .dashboard {
     flex-direction: column;
-    align-content: stretch;
-    width: 750px;
   }
 
   .title {
     position: absolute;
     height: 617px;
-    width: 375px;
     padding-top: 200px;
-    /*text-align: center;*/
   }
 
   .important {
     flex-direction: row;
-    align-content: stretch;
-    width: 750px;
+    flex-shrink: 1;
   }
 
   .not-important {
     flex-direction: row;
-    align-content: stretch;
   }
 
   .block {
-    width: 375px;
-    height: 617px;
+    height: 605px;
+    flex: 1;
   }
 
   .important-urgent {
     background-color: #ffeae5;
+    flex-grow: 1;
   }
 
   .important-urgent-title {
@@ -114,6 +114,7 @@
 
   .important-not-urgent {
     background-color: #eff3dd;
+    flex-grow: 1;
   }
 
   .important-not-urgent-title {
@@ -146,10 +147,54 @@
     border-radius: 10px;
     background-color: rgba(1, 1, 1, .5);
   }
+  .add-task {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100;
+    height:80px; 
+    width:80px; 
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ddd;
+    border-radius: 80px;
+    background: #58b7ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .add-task:active{
+    background: #20a0ff;
+
+  }
+  .add-task-icon {
+    height:40px; 
+    width:40px; 
+    display:block; 
+    position:relative;
+  } 
+  .add-task-icon-before, 
+  .add-task-icon-after{
+    content:''; 
+    height:8px; 
+    width:40px; 
+    display:block; 
+    background:#fff; 
+    border-radius:10px;
+    position:absolute; 
+    top:16px; 
+    left:0px;
+  }
+  .add-task-icon-after{
+    height:40px; 
+    width:8px; 
+    top:0; 
+    left:16px; 
+  }
 </style>
 
 <script>
-  import Header from '../components/header.vue'
+  import AppHeader from '../components/app-header.vue'
   const modal = weex.requireModule('modal')
 
   export default {
@@ -159,16 +204,12 @@
     created() {
     },
     components: {
-      Header
+      AppHeader
     },
     mounted() {
       this.loading = true;
       this.$store.dispatch('GetTasks').then(() => {
         this.loading = false;
-        // this.$router.push({
-        //   path: '/top'
-        // });
-        // this.showDialog = true;
       }, (err) => {
         this.loading = false;
       });
@@ -186,13 +227,12 @@
         this.loading = true;
         this.$store.dispatch('FinishTask', task).then(() => {
           this.loading = false;
-          this.$store.dispatch('GetTasks')
+          this.$store.dispatch('GetTasks').then(res=>{
+            console.log(res)
+          })
         }, (err) => {
           this.loading = false;
         });
-      },
-      showDetails(task) {
-        console.log(task)
       }
     }
   }

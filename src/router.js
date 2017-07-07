@@ -10,6 +10,7 @@ import ForgetView from './views/ForgetView.vue'
 import IndexView from './views/IndexView.vue'
 import VerifyView from './views/VerifyView.vue'
 import WellcomeView from './views/WellcomeView.vue'
+import TaskView from './views/TaskView.vue'
 
 Vue.use(Router)
 
@@ -29,6 +30,7 @@ export const constantRouterMap = [
   { path: '/login', component: LoginView, hidden: true },
   { path: '/register', component: RegisterView, hidden: true },
   { path: '/forget', component: ForgetView, hidden: true },
+  { path: '/task/:task_id', component: TaskView, hidden: true },
   { path: '/verify/:token', component: VerifyView, hidden: true },
   // { path: '/authredirect', component: authRedirect, hidden: true },
   // { path: '/404', component: Err404, hidden: true },

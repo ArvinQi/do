@@ -1,6 +1,10 @@
 import {
   getTasks,
-  finishTask
+  finishTask,
+  addTask,
+  getTask,
+  deleteTask,
+  updateTask
 } from '../../api/task';
 // import Cookies from 'js-cookie';
 const storage = weex.requireModule('storage')
@@ -15,16 +19,28 @@ const task = {
     },
     finishTasks: [
 
-    ]
+    ],
+    newTasks: [],
+    deleteTasks: [],
+    showTask: {}
   },
 
   mutations: {
     SET_TASKS: (state, tasks) => {
       state.tasks = tasks;
+    },
+    FINISH_TASKS: (state, task) => {
+      state.finishTasks.push(task)
+    },
+    ADD_TASKS: (state, task) => {
+      state.newTasks.push(task)
+    },
+    DELETE_TASKS: (state, task) => {
+      state.deleteTasks.push(task)
+    },
+    SHOW_TASKS: (state, task) => {
+      state.showTask = task
     }
-    // FINISH_TASKS: (state, task) => {
-
-    // }
   },
 
   actions: {
@@ -72,6 +88,24 @@ const task = {
         })
       });
     },
+    GetTask({
+      commit
+    }, task_id) {
+      return new Promise((resolve, reject) => {
+        storage.getItem('User-Id', e => {
+          getTask(
+            e.data,
+            task_id
+          ).then(response => {
+            const data = response.data;
+            commit('SHOW_TASKS', data);
+            resolve(data);
+          }).catch(error => {
+            reject(error);
+          });
+        });
+      })
+    },
     // 完成 Task
     FinishTask({
       commit
@@ -83,10 +117,67 @@ const task = {
             task._id,
             e.data,
             task
-          ).then(() => {
-            // const data = response.data;
-            // commit('FINISH_TASKS', data);
+          ).then(response => {
+            const data = response.data;
+            commit('FINISH_TASKS', data);
+            resolve(data);
+          }).catch(error => {
+            reject(error);
+          });
+        });
+      })
+    },
+    // 更新 Task
+    UpdateTask({
+      commit
+    }, task) {
+      return new Promise((resolve, reject) => {
+        storage.getItem('User-Id', e => {
+          updateTask(
+            task._id,
+            e.data,
+            task
+          ).then(response => {
+            const data = response.data;
+            commit('SHOW_TASKS', data);
+            resolve(data);
+          }).catch(error => {
+            reject(error);
+          });
+        });
+      })
+    },
+    // 添加 Task
+    AddTask({
+      commit
+    }, task) {
+      return new Promise((resolve, reject) => {
+        storage.getItem('User-Id', e => {
+          addTask(
+            e.data,
+            task
+          ).then(response => {
+            const data = response.data;
+            commit('ADD_TASKS', data);
             resolve();
+          }).catch(error => {
+            reject(error);
+          });
+        });
+      })
+    },
+    DeleteTask({
+      commit
+    }, task_id) {
+      return new Promise((resolve, reject) => {
+        storage.getItem('User-Id', e => {
+          deleteTask(
+            e.data,
+            task_id
+          ).then(response => {
+            const data = response.data;
+            commit('DELETE_TASKS', data);
+            resolve(data);
           }).catch(error => {
             reject(error);
           });
