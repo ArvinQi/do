@@ -8,7 +8,8 @@ const stream = weex.requireModule('stream');
 
 const fetch = opt => {
   const params = {};
-  const api = 'http://localhost:8000/api';
+  // const api = 'http://localhost:8000/api';
+  const api = 'http://do.arvinqi.com:8080/api';
   params.url = api + opt.url;
   params.method = opt.method;
   params.type = 'json';
