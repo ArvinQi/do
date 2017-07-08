@@ -11,6 +11,7 @@ import IndexView from './views/IndexView.vue'
 import VerifyView from './views/VerifyView.vue'
 import WellcomeView from './views/WellcomeView.vue'
 import TaskView from './views/TaskView.vue'
+import ResendEmail from './views/ResendEmailView.vue'
 
 Vue.use(Router)
 
@@ -32,6 +33,7 @@ export const constantRouterMap = [
   { path: '/forget', component: ForgetView, hidden: true },
   { path: '/task/:task_id', component: TaskView, hidden: true },
   { path: '/verify/:token', component: VerifyView, hidden: true },
+  { path: '/resend', component: ResendEmail, hidden: true },
   // { path: '/authredirect', component: authRedirect, hidden: true },
   // { path: '/404', component: Err404, hidden: true },
   // { path: '/401', component: Err401, hidden: true },

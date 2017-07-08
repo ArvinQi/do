@@ -30,6 +30,13 @@ export function verifyEmail(token) {
     method: 'get'
   });
 }
+export function resendEmail(data) {
+  return fetch({
+    url: '/auth/resendverification',
+    method: 'post',
+    data
+  });
+}
 export function logout() {
   return fetch({
     url: '/login/logout',

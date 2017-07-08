@@ -1,15 +1,11 @@
 <template>
   <div class="login">
-    <text class="logo">D O</text>
+    <text class="login-logo">D O</text>
     <div>
       <input v-model="email" type="text" placeholder="email" class="input"></input>
-      <input v-model="password" type="password" placeholder="password" class="input"></input>
-      <input v-model="repeatPassword" type="password" placeholder="retype password" class="input"></input>
       <text class="error" v-if="error">{{error}}</text>
       <text class="button" value="loading..." v-if="loading"></text>
-      <text class="button" value="Register" @click="register" v-else></text>
-      <text @click="jump('/login')" class="goto">Have a account, back to login?</text>
-      <text @click="jump('/resend')" class="goto">Resend verify email?</text>
+      <text class="button" value="Resend" @click="resend" v-else></text>
     </div>
   </div>
 </template>
@@ -20,7 +16,7 @@
     background-color: #fff;
   }
 
-  .logo {
+  .login-logo {
     font-size: 60px;
     color: #663366;
     text-align: center;
@@ -35,19 +31,17 @@
     text-align: center;
     box-sizing: border-box;
     outline: none;
-    margin: 20px 40px;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 40px;
     margin-right: 40px;
-    padding: 10px 15px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 15px;
     padding-right: 15px;
     font-size: 48px;
     border-radius: 8px;
-    color: #fff;
+    color: #ffffff;
     background-color: #20a0ff;
     border-color: #20a0ff;
   }
@@ -59,7 +53,7 @@
     margin-left: 40px;
     margin-right: 40px;
     /*placeholder-color: #ccc;*/
-    background-color: #fff;
+    background-color: #ffffff;
     background-image: none;
     border-radius: 8px;
     border: 1px solid #bfcbd9;
@@ -72,7 +66,6 @@
     font-size: inherit;
     line-height: 1;
     outline: none;
-    padding: 3px 10px;
     padding-top: 3px;
     padding-bottom: 3px;
     padding-left: 10px;
@@ -86,8 +79,7 @@
   }
 
   .error {
-    display: block;
-    color: #FF4949;
+    color: #ff4949;
     padding-top: 3px;
     padding-bottom: 3px;
     padding-left: 50px;
@@ -100,20 +92,19 @@
 </style>
 
 <script>
-  // import {
-  //   mapActions,
-  //   mapMutations,
-  //   mapGetters,
-  //   mapState
-  // } from 'vuex'
-  // const modal = weex.requireModule('modal')
+  import {
+    mapActions,
+    mapMutations,
+    mapGetters,
+    mapState
+  } from 'vuex'
+  const modal = weex.requireModule('modal')
 
   export default {
     data() {
       return {
         email: "",
         password: "",
-        repeatPassword: "",
         error: "",
         loading: false
       }
@@ -121,23 +112,17 @@
     mounted() {},
     components: {},
     methods: {
-      register() {
+      resend() {
         this.error = "";
         if(!this.email){
           this.error = "Please input the username or email!"
-        }else if(!this.password){
-          this.error = "Password need!"
-        }else if(this.password != this.repeatPassword){
-          this.error = "Password retype not equal!"
         }else{
           this.loading = true;
-          this.$store.dispatch('RegisterByEmail', {
-            email: this.email,
-            password: this.password
-          }).then(() => {
+          this.$store.dispatch('ResendEmail', 
+            this.email
+          ).then(() => {
             this.loading = false;
             this.$router.push({ path: '/login' });
-            // this.showDialog = true;
           }, (err)=>{
             this.loading = false;
           });

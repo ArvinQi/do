@@ -3,7 +3,8 @@ import {
   // logout,
   getInfo,
   registerByEmail,
-  verifyEmail
+  verifyEmail,
+  resendEmail
 } from '../../api/login';
 // import Cookies from 'js-cookie';
 const storage = weex.requireModule('storage')
@@ -122,6 +123,20 @@ const user = {
       const token = params.token;
       return new Promise((resolve, reject) => {
         verifyEmail(token).then(response => {
+          const data = response.data;
+          commit('SET_EMAIL', data.email);
+          resolve(data);
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    // 验证邮箱
+    ResendEmail({
+      commit
+    }, email) {
+      return new Promise((resolve, reject) => {
+        resendEmail({ email }).then(response => {
           const data = response.data;
           commit('SET_EMAIL', data.email);
           resolve(data);
