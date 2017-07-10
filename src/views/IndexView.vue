@@ -24,7 +24,7 @@
             Not Urgent
           </text>
           <list class="list">
-            <cell @click="finishTask(task)" class="cell" v-for="task in tasks['important-not-urgent']" v-bind:key="task.id">
+            <cell @click="finishTask(task)" @longpress="jump('/task/'+task._id)" class="cell" v-for="task in tasks['important-not-urgent']" v-bind:key="task.id">
               <div class="panel">
                 <text class="task">{{task.title}}</text>
               </div>
@@ -40,7 +40,7 @@
             Urgent
           </text>
           <list class="list">
-            <cell @click="finishTask(task)" class="cell" v-for="task in tasks['not-important-urgent']" v-bind:key="task.id">
+            <cell @click="finishTask(task)" @longpress="jump('/task/'+task._id)" class="cell" v-for="task in tasks['not-important-urgent']" v-bind:key="task.id">
               <div class="panel">
                 <text class="task">{{task.title}}</text>
               </div>
@@ -54,7 +54,7 @@
             Not Urgent
           </text>
           <list class="list">
-            <cell @click="finishTask(task)" class="cell" v-for="task in tasks['not-important-not-urgent']" v-bind:key="task.id">
+            <cell @click="finishTask(task)" @longpress="jump('/task/'+task._id)" class="cell" v-for="task in tasks['not-important-not-urgent']" v-bind:key="task.id">
               <div class="panel">
                 <text class="task">{{task.title}}</text>
               </div>
