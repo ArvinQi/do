@@ -8,7 +8,7 @@
       </div>
       <div>
         <text class="label">Type</text>
-        <input @click="pickerType" disabled="true" :value="taskTypeList[taskType-1]" type="text" class="input" placeholder="type"></input>
+        <text @click="pickerType" class="input text" placeholder="type">{{taskTypeList[taskType-1]}}</text>
       </div>
       <!--<div>
         <text class="label">Estimate(/h)</text>
@@ -101,7 +101,7 @@
     color: #1f2d3d;
     display: inline-block;
     font-size: inherit;
-    line-height: 1;
+    line-height: 74px;
     outline: none;
     padding-top: 3px;
     padding-bottom: 3px;
@@ -109,7 +109,9 @@
     padding-right: 10px;
     /*transition: border-color .2s cubic-bezier(.645, .045, .355, 1);*/
   }
-
+  .text{
+    color: #757575;
+  }
   .input:focus {
     outline: none;
     border-color: #20a0ff;

@@ -96,6 +96,8 @@
   .goto{
     color: #F7BA2A;
     text-align: center;
+    font-size: 40px;
+    margin-top: 30px;
   }
 </style>
 

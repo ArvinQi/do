@@ -2,7 +2,7 @@
   <div class="login">
     <text class="login-logo">D O</text>
     <div>
-      <text>Wellcome to D O!</text>
+      <text class="wellcome">Wellcome to D O!</text>
       <div class="links">
         <text @click="jump('/register')" class="goto">No account, register?</text>
         <text @click="jump('/login')" class="goto">login?</text>
@@ -22,7 +22,10 @@
     color: #663366;
     text-align: center;
   }
-
+  .wellcome {
+    margin-top: 50px;
+    font-size: 40px;
+  }
   .links {
     flex-direction: row;
     justify-content: space-between;
@@ -93,8 +96,10 @@
   }
 
   .goto {
+    margin-top: 60px;
     color: #F7BA2A;
     text-align: center;
+    font-size: 40px;
   }
 </style>
 

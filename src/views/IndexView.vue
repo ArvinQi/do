@@ -139,10 +139,11 @@
 
   .task {
     color: #fff;
-    padding-top: 5px;
+    padding-top: 10px;
     padding-bottom: 10px;
-    padding-left: 5px;
+    padding-left: 10px;
     padding-right: 10px;
+    margin-bottom: 10px;
     border: #fff 1px solid;
     border-radius: 10px;
     background-color: rgba(1, 1, 1, .5);
@@ -151,17 +152,17 @@
     position: absolute;
     bottom: 30px;
     right: 30px;
-    z-index: 100;
     height:80px; 
     width:80px; 
     border-style: solid;
     border-width: 1px;
     border-color: #ddd;
     border-radius: 80px;
-    background: #58b7ff;
+    background-color: #20a0ff;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 100;
   }
   .add-task:active{
     background: #20a0ff;
@@ -172,6 +173,8 @@
     width:40px; 
     display:block; 
     position:relative;
+    background-color: #20a0ff;
+    z-index: 100;
   } 
   .add-task-icon-before, 
   .add-task-icon-after{
@@ -179,7 +182,7 @@
     height:8px; 
     width:40px; 
     display:block; 
-    background:#fff; 
+    background-color: #fff; 
     border-radius:10px;
     position:absolute; 
     top:16px; 

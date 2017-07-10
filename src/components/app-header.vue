@@ -63,11 +63,13 @@
     bottom: 10px;
     /*line-height: 110px;*/
     color: #fff;
+    font-size: 30px;
   }
   .logout{
     right: 10px;
     bottom: 10px;
     /*line-height: 110px;*/
     color: #fff;
+    font-size: 30px;
   }
 </style>
