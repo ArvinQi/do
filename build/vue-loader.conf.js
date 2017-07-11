@@ -8,5 +8,11 @@ module.exports = {
             ? config.build.productionSourceMap
             : config.dev.cssSourceMap,
         extract: isProduction
-    })
+    }),
+    compilerModules: [{
+        postTransformNode: el => {
+            el.staticStyle = `$processStyle(${el.staticStyle})`
+            el.styleBinding = `$processStyle(${el.styleBinding})`
+        }
+    }]
 }
