@@ -4,7 +4,7 @@
     "description": "a weex project",
     "main": "index.js",
     "scripts": {
-        "dev": "webpack -w",
+        "dev": "webpack --config build/webpack.base.conf.js -w",
         "serve": "webpack-dev-server --config build/webpack.dev.conf.js --open",
         "build": "webpack",
         "build_plugin": "webpack --config ./tools/webpack.config.plugin.js --color",
