@@ -36,7 +36,9 @@ const fetch = opt => {
           duration: 0.8
         });
         if (error.statusCode === 401) {
-          router.push('/login')
+          store.dispatch('LogOut').then(() => {
+            router.go('/login');
+          })
         }
         reject(response);
       }

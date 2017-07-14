@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "webpack --config build/webpack.base.conf.js -w",
         "serve": "webpack-dev-server --config build/webpack.dev.conf.js --open",
-        "build": "webpack",
+        "build": "webpack --config build/webpack.base.conf.js --color",
         "build_plugin": "webpack --config ./tools/webpack.config.plugin.js --color",
         "dev1": "node build/dev-server.js",
         "build:prod": "cross-env NODE_ENV=production node build/build.js",
@@ -24,6 +24,7 @@
         "axios": "^0.16.2",
         "element-ui": "^1.3.7",
         "js-cookie": "^2.1.4",
+        "nprogress": "^0.2.0",
         "vue": "^2.1.8",
         "vue-router": "^2.1.1",
         "vuex": "^2.1.1",

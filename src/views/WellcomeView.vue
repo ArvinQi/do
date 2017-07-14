@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="login" @appear="initState">
     <text class="login-logo">D O</text>
     <div>
       <text class="wellcome">Wellcome to D O!</text>
@@ -104,12 +104,6 @@
 </style>
 
 <script>
-  import {
-    mapActions,
-    mapMutations,
-    mapGetters,
-    mapState
-  } from 'vuex'
   const modal = weex.requireModule('modal')
 
   export default {
@@ -121,7 +115,12 @@
         loading: false
       }
     },
-    mounted() {},
+    mounted() {
+      if(this.$store.getters.token){
+        // console.log(1)
+        this.$router.push('/index')
+      }
+    },
     components: {},
     methods: {
       login() {

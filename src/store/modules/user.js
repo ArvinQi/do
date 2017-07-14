@@ -22,7 +22,7 @@ const user = {
     name: '',
     avatar: '',
     introduction: '',
-    roles: [],
+    roles: ['admin'],
     setting: {
       articlePlatform: []
     },
@@ -194,8 +194,9 @@ const user = {
         // logout(state.token).then(() => {
         commit('SET_TOKEN', '');
         commit('SET_ROLES', []);
-        storage.removeItem('User-Token');
-        resolve();
+        storage.removeItem('User-Token', () => {
+          resolve();
+        });
         // }).catch(error => {
         //   reject(error);
         // });
@@ -219,7 +220,7 @@ const user = {
     }, role) {
       return new Promise(resolve => {
         commit('SET_ROLES', [role]);
-        commit('SET_TOKEN', role);
+        // commit('SET_TOKEN', role);
         storage.setItem('User-Token', role);
         resolve();
       })
