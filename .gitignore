@@ -1,4 +1,10 @@
 node_modules
 dist
-platforms
 temp
+platforms
+# ios
+Pods
+build
+# android
+.gradle
+build

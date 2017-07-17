@@ -5,7 +5,7 @@ import store from './store'
 import {
   sync
 } from 'vuex-router-sync'
-import NProgress from 'nprogress'; // Progress 进度条
+// import NProgress from 'nprogress'; // Progress 进度条
 import * as filters from './filters'
 import mixins from './mixins'
 const storage = weex.requireModule('storage')
@@ -36,7 +36,7 @@ function hasPermission(roles = [], permissionRoles) {
 // register global progress.
 const whiteList = ['/login', '/resend', '/register', '/verify', '/forget', '/']; // 不重定向白名单
 router.beforeEach((to, from, next) => {
-  NProgress.start(); // 开启Progress
+  // NProgress.start(); // 开启Progress
   storage.getItem('User-Token', e => {
     if (e.result === 'success' || store.getters.token) { // 判断是否有token
       if (to.path === '/login' || to.path === '/') {
@@ -76,15 +76,15 @@ router.beforeEach((to, from, next) => {
         next()
       } else {
         next('/login'); // 否则全部重定向到登录页
-        NProgress.done(); // 在hash模式下 改变手动改变hash 重定向回来 不会触发afterEach 暂时hack方案 ps：history模式下无问题，可删除该行！
+        // NProgress.done(); // 在hash模式下 改变手动改变hash 重定向回来 不会触发afterEach 暂时hack方案 ps：history模式下无问题，可删除该行！
       }
     }
   })
 });
 
-router.afterEach(() => {
-  NProgress.done(); // 结束Progress
-});
+// router.afterEach(() => {
+//   NProgress.done(); // 结束Progress
+// });
 
 // Vue.config.productionTip = false;
 
