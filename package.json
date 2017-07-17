@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "webpack --config build/webpack.base.conf.js -w",
         "serve": "webpack-dev-server --config build/webpack.dev.conf.js --open",
-        "build": "webpack --config build/webpack.base.conf.js --color",
+        "build": "webpack --config webpack.config.js --color",
         "build_plugin": "webpack --config ./tools/webpack.config.plugin.js --color",
         "dev1": "node build/dev-server.js",
         "build:prod": "cross-env NODE_ENV=production node build/build.js",

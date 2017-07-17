@@ -130,7 +130,7 @@
           }).then(() => {
             this.loading = false;
             this.$store.dispatch('GetInfo').then(() => {
-              this.$router.push({ path: '/index' });
+              this.$router.push('/index');
             })
             // this.showDialog = true;
           }, (err)=>{
