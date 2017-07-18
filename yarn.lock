@@ -6393,7 +6393,7 @@ weex-loader@^0.4.1, weex-loader@^0.4.4:
     weex-transformer "^0.4.2"
     weex-vue-loader "^0.2.10"
 
-weex-picker@^0.1.0:
+weex-picker@^0.1.0, weex-picker@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/weex-picker/-/weex-picker-0.1.4.tgz#4d648096274277f5f70828a40ba909e4ff143fa0"
   dependencies:
