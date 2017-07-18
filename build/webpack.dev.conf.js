@@ -30,7 +30,7 @@ module.exports = merge(baseWebpackConfig, {
         // publicPath: '/dist/',
         proxy: {
             '/api': {
-            target: 'http://localhost:8000/',
+            target: 'http://localhost:8000',
             secure: false
             }
         }
