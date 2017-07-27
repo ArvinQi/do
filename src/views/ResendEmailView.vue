@@ -64,7 +64,7 @@
     color: #1f2d3d;
     display: inline-block;
     font-size: inherit;
-    line-height: 1;
+    /* line-height: 1; */
     outline: none;
     padding-top: 3px;
     padding-bottom: 3px;

@@ -78,7 +78,7 @@
     color: #1f2d3d;
     display: inline-block;
     font-size: inherit;
-    line-height: 1;
+    /* line-height: 1; */
     outline: none;
     padding: 3px 10px;
     padding-top: 3px;
