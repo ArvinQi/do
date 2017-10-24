@@ -34,6 +34,8 @@ exports[`renders correctly 1`] = `
             "top": 0,
           },
           Object {
+            "backgroundColor": "#FFF",
+            "borderBottomWidth": 0,
             "height": 200,
           },
         ]
@@ -55,64 +57,14 @@ exports[`renders correctly 1`] = `
         }
         virtual={undefined}
       >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
+        <Image
+          source={1}
+          style={
+            Object {
+              "marginBottom": 0,
+            }
+          }
         />
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          numberOfLines={1}
-          style={
-            Object {
-              "color": "#000",
-              "fontFamily": "System",
-              "fontSize": 17,
-              "fontWeight": "600",
-              "textAlign": "center",
-            }
-          }
-          virtual={undefined}
-        >
-          ReactNativeSeed.com
-        </Text>
-        <View
-          padder={true}
-          style={
-            Object {
-              "paddingBottom": 10,
-              "paddingLeft": 10,
-              "paddingRight": 10,
-              "paddingTop": 10,
-            }
-          }
-          virtual={undefined}
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            disabled={false}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "color": "#000",
-                  "fontFamily": "System",
-                  "fontSize": 16,
-                },
-                Object {
-                  "color": "#000",
-                },
-              ]
-            }
-            uppercase={false}
-            virtual={undefined}
-          />
-        </View>
       </View>
     </View>
   </View>
@@ -130,6 +82,7 @@ exports[`renders correctly 1`] = `
     keyboardDismissMode="interactive"
     keyboardOpeningTime={250}
     onScroll={[Function]}
+    padder={true}
     resetScrollToCoords={
       Object {
         "x": 0,
@@ -139,137 +92,63 @@ exports[`renders correctly 1`] = `
     scrollEventThrottle={0}
     showsVerticalScrollIndicator={true}
     style={
-      Object {
-        "backgroundColor": "transparent",
-        "flex": 1,
-      }
-    }
-    virtual={undefined}
-  >
-    <View>
-      <View
-        padder={true}
-        style={
-          Object {
-            "paddingBottom": 10,
-            "paddingLeft": 10,
-            "paddingRight": 10,
-            "paddingTop": 10,
-          }
-        }
-        virtual={undefined}
-      >
-        <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
-          accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
-          isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "alignItems": "center",
-              "alignSelf": "stretch",
-              "backgroundColor": "#007aff",
-              "borderBottomWidth": null,
-              "borderColor": "#007aff",
-              "borderLeftWidth": null,
-              "borderRadius": 5,
-              "borderRightWidth": null,
-              "borderTopWidth": null,
-              "elevation": 2,
-              "flexDirection": "row",
-              "height": 45,
-              "justifyContent": "center",
-              "opacity": 1,
-              "paddingBottom": 6,
-              "paddingTop": 6,
-            }
-          }
-          testID={undefined}
-          tvParallaxProperties={undefined}
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            disabled={false}
-            ellipsizeMode="tail"
-            style={
-              Object {
-                "backgroundColor": "transparent",
-                "color": "#fff",
-                "fontFamily": "System",
-                "fontSize": 16.5,
-                "lineHeight": 19,
-                "marginLeft": 0,
-                "marginRight": 0,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-              }
-            }
-            uppercase={false}
-            virtual={undefined}
-          >
-            Login
-          </Text>
-        </View>
-      </View>
-    </View>
-  </RCTScrollView>
-  <View
-    style={
       Array [
         Object {
-          "backgroundColor": "#F8F8F8",
-          "borderColor": "#cbcbcb",
-          "borderTopWidth": 0.5,
-          "elevation": 3,
-          "flexDirection": "row",
-          "height": 55,
-          "justifyContent": "center",
-          "left": 0,
-          "right": 0,
+          "backgroundColor": "transparent",
+          "flex": 1,
+          "paddingBottom": 10,
+          "paddingLeft": 10,
+          "paddingRight": 10,
+          "paddingTop": 10,
         },
         Object {
-          "backgroundColor": "#F8F8F8",
+          "backgroundColor": "#FFF",
+          "marginTop": 0,
         },
       ]
     }
     virtual={undefined}
   >
-    <View
-      style={
-        Array [
-          Object {},
-          Object {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "opacity": 0.5,
-          },
-        ]
-      }
-      virtual={undefined}
-    >
+    <View>
       <View
-        padder={true}
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        collapsable={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         style={
           Object {
-            "paddingBottom": 10,
-            "paddingLeft": 10,
-            "paddingRight": 10,
-            "paddingTop": 10,
+            "alignItems": "center",
+            "alignSelf": "stretch",
+            "backgroundColor": "#007aff",
+            "borderBottomWidth": null,
+            "borderColor": "#007aff",
+            "borderLeftWidth": null,
+            "borderRadius": 5,
+            "borderRightWidth": null,
+            "borderTopWidth": null,
+            "elevation": 2,
+            "flexDirection": "row",
+            "height": 45,
+            "justifyContent": "center",
+            "marginTop": 20,
+            "opacity": 1,
+            "paddingBottom": 6,
+            "paddingTop": 6,
           }
         }
-        virtual={undefined}
+        testID={undefined}
+        tvParallaxProperties={undefined}
       >
         <Text
           accessible={true}
@@ -277,37 +156,25 @@ exports[`renders correctly 1`] = `
           disabled={false}
           ellipsizeMode="tail"
           style={
-            Array [
-              Object {
-                "color": "#000",
-                "fontFamily": "System",
-                "fontSize": 16,
-              },
-              Object {
-                "color": "#000",
-              },
-            ]
+            Object {
+              "backgroundColor": "transparent",
+              "color": "#fff",
+              "fontFamily": "System",
+              "fontSize": 16.5,
+              "lineHeight": 19,
+              "marginLeft": 0,
+              "marginRight": 0,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+            }
           }
           uppercase={false}
           virtual={undefined}
         >
-          Made with love at 
+          Login
         </Text>
       </View>
-      <Image
-        source={
-          Object {
-            "uri": "https://geekyants.com/images/logo-dark.png",
-          }
-        }
-        style={
-          Object {
-            "height": 21.5,
-            "width": 105.5,
-          }
-        }
-      />
     </View>
-  </View>
+  </RCTScrollView>
 </View>
 `;
