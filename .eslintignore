@@ -1,10 +1,2 @@
-dist
-hooks
-platforms
-plugins
-temp
-tools
-web
-build/*.js
-config/*.js
-src/assets
+artifacts/
+App.js
