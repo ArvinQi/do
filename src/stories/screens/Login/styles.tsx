@@ -25,12 +25,19 @@ const styles: any = StyleSheet.create({
 		paddingBottom: 30,
 		bottom: 0,
 	},
-	input: {
+	logo: {
+		marginBottom: 0,
+	},
+	input: { 
 		marginBottom: 20,
 	},
 	btn: {
 		marginTop: 20,
-		alignSelf: "center",
+		// alignSelf: "center",
 	},
+	content: {
+		backgroundColor: "#FFF",
+		marginTop: 0,
+	}
 });
 export default styles;

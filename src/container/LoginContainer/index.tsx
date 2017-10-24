@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Item, Input, Icon, Form, Toast } from "native-base";
+import { Item, Label, Input, Icon, Form, Toast } from "native-base";
 import { Field, reduxForm } from "redux-form";
 import Login from "../../stories/screens/Login";
 
@@ -22,11 +22,11 @@ class LoginForm extends React.Component<Props, State> {
 
 	renderInput({ input, meta: { touched, error } }) {
 		return (
-			<Item error={error && touched}>
+			<Item style={{marginLeft: 0}} floatingLabel error={error && touched}>
 				<Icon active name={input.name === "email" ? "person" : "unlock"} />
+				<Label>{input.name === "email" ? "Username" : "Password"}</Label>
 				<Input
 					ref={c => (this.textInput = c)}
-					placeholder={input.name === "email" ? "Email" : "Password"}
 					secureTextEntry={input.name === "password" ? true : false}
 					{...input}
 				/>
@@ -49,7 +49,7 @@ class LoginForm extends React.Component<Props, State> {
 
 	render() {
 		const form = (
-			<Form>
+			<Form style={{paddingLeft: 0, marginLeft: 0}} >
 				<Field name="email" component={this.renderInput} validate={[email, required]} />
 				<Field
 					name="password"
