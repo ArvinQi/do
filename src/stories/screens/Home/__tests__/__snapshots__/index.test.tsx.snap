@@ -131,7 +131,7 @@ exports[`renders correctly 1`] = `
           }
           virtual={undefined}
         >
-          Home
+          D O
         </Text>
       </View>
       <View
@@ -178,23 +178,61 @@ exports[`renders correctly 1`] = `
     }
     virtual={undefined}
   >
-    <View>
-      <View
-        closeOnRowBeginSwipe={false}
-        closeOnRowPress={true}
-        closeOnScroll={true}
-        directionalDistanceChangeThreshold={2}
-        disableLeftSwipe={false}
-        disableRightSwipe={false}
-        leftOpenValue={0}
-        previewFirstRow={false}
-        recalculateHiddenLayout={false}
-        rightOpenValue={0}
-        style={Object {}}
-        swipeToOpenPercent={50}
-        virtual={undefined}
-      />
-    </View>
+    <View />
   </RCTScrollView>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#F8F8F8",
+          "borderColor": "#cbcbcb",
+          "borderTopWidth": 0.5,
+          "elevation": 3,
+          "flexDirection": "row",
+          "height": 55,
+          "justifyContent": "center",
+          "left": 0,
+          "right": 0,
+        },
+        Object {
+          "backgroundColor": "#F8F8F8",
+        },
+      ]
+    }
+    virtual={undefined}
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "opacity": 0.5,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#000",
+              "fontFamily": "System",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#ec4c4c",
+            },
+          ]
+        }
+        uppercase={false}
+        virtual={undefined}
+      >
+        Have none account? 
+      </Text>
+    </View>
+  </View>
 </View>
 `;
