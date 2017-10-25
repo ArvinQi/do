@@ -16,13 +16,13 @@ export interface Props {
 	navigation: any;
 	valid: boolean;
 }
-export interface State {}
+export interface State { }
 class LoginForm extends React.Component<Props, State> {
 	textInput: any;
 
 	renderInput({ input, meta: { touched, error } }) {
 		return (
-			<Item style={{marginLeft: 0}} floatingLabel error={error && touched}>
+			<Item style={{ marginLeft: 0 }} floatingLabel error={error && touched}>
 				<Icon active name={input.name === "email" ? "person" : "unlock"} />
 				<Label>{input.name === "email" ? "Username" : "Password"}</Label>
 				<Input
@@ -46,10 +46,12 @@ class LoginForm extends React.Component<Props, State> {
 			});
 		}
 	}
-
+	goRegister() {
+		this.props.navigation.navigate("Drawer");
+	}
 	render() {
 		const form = (
-			<Form style={{paddingLeft: 0, marginLeft: 0}} >
+			<Form style={{ paddingLeft: 0, marginLeft: 0 }} >
 				<Field name="email" component={this.renderInput} validate={[email, required]} />
 				<Field
 					name="password"
@@ -58,7 +60,7 @@ class LoginForm extends React.Component<Props, State> {
 				/>
 			</Form>
 		);
-		return <Login loginForm={form} onLogin={() => this.login()} />;
+		return <Login loginForm={form} goRegister={() => this.goRegister()} onLogin={() => this.login()} />;
 	}
 }
 const LoginContainer = reduxForm({

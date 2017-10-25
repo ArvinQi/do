@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 
 const styles: any = StyleSheet.create({
 	container: {
+		// flexDirection: "row",
 		backgroundColor: "#FBFAFA",
 	},
 	row: {
@@ -16,5 +17,6 @@ const styles: any = StyleSheet.create({
 	mt: {
 		marginTop: 18,
 	},
+	wrapper: {},
 });
 export default styles;

@@ -26,18 +26,20 @@ const styles: any = StyleSheet.create({
 		bottom: 0,
 	},
 	logo: {
-		marginBottom: 0,
+		width: 200,
+		height: 200,
+		marginTop: 16,
 	},
-	input: { 
+	input: {
 		marginBottom: 20,
 	},
 	btn: {
 		marginTop: 20,
-		// alignSelf: "center",
+		backgroundColor: "rgba(0,0,0, .6)",
 	},
 	content: {
 		backgroundColor: "#FFF",
 		marginTop: 0,
-	}
+	},
 });
 export default styles;

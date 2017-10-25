@@ -48,7 +48,7 @@
 		"switch-default": true,
 		"triple-equals": [true, "allow-undefined-check"],
 		"eofline": false,
-		"indent": [true, "tabs"],
+		"indent": [true, 2],
 		"max-line-length": [true, 150],
 		"no-require-imports": false,
 		"no-trailing-whitespace": true,

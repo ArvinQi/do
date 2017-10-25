@@ -18,7 +18,7 @@ const Drawer = DrawerNavigator(
 		drawerWidth: deviceWidth - 50,
 		drawerPosition: "left",
 		contentComponent: props => <Sidebar {...props} />,
-	}
+	},
 );
 
 const App = StackNavigator(
@@ -28,9 +28,9 @@ const App = StackNavigator(
 		Drawer: { screen: Drawer },
 	},
 	{
-		initialRouteName: "Login",
+		initialRouteName: "Drawer",
 		headerMode: "none",
-	}
+	},
 );
 
 export default () => (
