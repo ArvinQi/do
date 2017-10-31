@@ -1,15 +1,29 @@
 import * as React from "react";
-import { View } from "react-native";
+import {View} from "react-native";
 // import Swiper from "react-native-swiper";
-import { Container, Header, Title, Content, Text, Button, Icon, Left, Body, Right, List, ListItem, Footer } from "native-base";
+import {
+  Container,
+  Header,
+  Title,
+  Content,
+  Text,
+  Button,
+  Icon,
+  Left,
+  Body,
+  Right,
+  // List, ListItem,
+  Footer
+} from "native-base";
 
 import styles from "./styles";
 export interface Props {
-  navigation: any;
-  list: any;
+  navigation : any;
+  list : any;
 }
-export interface State { }
-class Home extends React.Component<Props, State> {
+export interface State {}
+class Home extends React.Component < Props,
+State > {
   _onPressButton() {
     // console.log();
   }
@@ -22,16 +36,27 @@ class Home extends React.Component<Props, State> {
               <Icon
                 active
                 name="menu"
-                onPress={() => this.props.navigation.navigate("DrawerOpen")}
-              />
+                onPress={() => this.props.navigation.navigate("DrawerOpen")}/>
             </Button>
           </Left>
           <Body>
             <Title>D O</Title>
           </Body>
-          <Right />
+          <Right/>
         </Header>
         <Content>
+          <View
+            onStartShouldSetResponder={(evt) =>{
+              console.log(evt)
+              return true
+            }}
+            onResponderMove={(evt) => {
+            console.log(evt.nativeEvent);
+            
+          }}
+            >
+            <Text>width</Text>
+          </View>
           {/* <Swiper style={styles.wrapper}>
             <View onResponderMove={(e) => { console.log(e); }} style={styles.slide1}>
               <List>
@@ -95,10 +120,20 @@ class Home extends React.Component<Props, State> {
             </View>
           </Swiper> */}
         </Content>
-        <Footer style={{ backgroundColor: "#F8F8F8" }}>
-          <View style={{ alignItems: "center", opacity: 0.5, flexDirection: "row" }}>
+        <Footer style={{
+          backgroundColor: "#F8F8F8"
+        }}>
+          <View
+            style={{
+            alignItems: "center",
+            opacity: 0.5,
+            flexDirection: "row"
+          }}>
             {/* <View padder> */}
-            <Text style={{ color: "#ec4c4c" }}>Have none account? </Text>
+            <Text style={{
+              color: "#ec4c4c"
+            }}>Have none account?
+            </Text>
             {/* </View> */}
           </View>
         </Footer>
