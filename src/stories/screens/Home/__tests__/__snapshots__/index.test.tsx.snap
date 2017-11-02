@@ -148,61 +148,128 @@ exports[`renders correctly 1`] = `
       />
     </View>
   </View>
-  <RCTScrollView
-    automaticallyAdjustContentInsets={false}
-    contentInset={
-      Object {
-        "bottom": 0,
-      }
-    }
-    enableAutoAutomaticScroll={true}
-    enableResetScrollToCoords={true}
-    extraHeight={75}
-    extraScrollHeight={0}
-    keyboardDismissMode="interactive"
-    keyboardOpeningTime={250}
-    onScroll={[Function]}
-    resetScrollToCoords={
-      Object {
-        "x": 0,
-        "y": 0,
-      }
-    }
-    scrollEventThrottle={0}
-    showsVerticalScrollIndicator={true}
+  <View
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "backgroundColor": "transparent",
         "flex": 1,
+        "flexDirection": "row",
+        "height": "100%",
+        "width": "100%",
       }
     }
-    virtual={undefined}
   >
-    <View>
-      <View
-        onResponderMove={[Function]}
-        onStartShouldSetResponder={[Function]}
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Object {
-              "color": "#000",
-              "fontFamily": "System",
-              "fontSize": 16,
-            }
+    <View
+      style={
+        Object {
+          "backgroundColor": "#f1f",
+          "height": "100%",
+          "width": 525,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#000",
+            "fontFamily": "System",
+            "fontSize": 16,
           }
-          uppercase={false}
-          virtual={undefined}
-        >
-          width
-        </Text>
-      </View>
+        }
+        uppercase={false}
+        virtual={undefined}
+      >
+        1st
+      </Text>
     </View>
-  </RCTScrollView>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#ddd",
+          "height": "100%",
+          "width": 75,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#000",
+            "fontFamily": "System",
+            "fontSize": 16,
+          }
+        }
+        uppercase={false}
+        virtual={undefined}
+      >
+        2nd
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fff",
+          "height": "100%",
+          "width": 75,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#000",
+            "fontFamily": "System",
+            "fontSize": 16,
+          }
+        }
+        uppercase={false}
+        virtual={undefined}
+      >
+        3rd
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fe1",
+          "height": "100%",
+          "width": 75,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#000",
+            "fontFamily": "System",
+            "fontSize": 16,
+          }
+        }
+        uppercase={false}
+        virtual={undefined}
+      >
+        4th
+      </Text>
+    </View>
+  </View>
   <View
     style={
       Array [
