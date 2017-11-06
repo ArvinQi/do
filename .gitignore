@@ -3,3 +3,4 @@ artifacts/
 .expo/
 npm-debug.*
 .DS_Store
+.vscode
