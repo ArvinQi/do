@@ -164,110 +164,122 @@ exports[`renders correctly 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "#f1f",
-          "height": "100%",
-          "width": 525,
+          "flex": 1,
+          "flexDirection": "row",
         }
       }
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
+      <View
         style={
           Object {
-            "color": "#000",
-            "fontFamily": "System",
-            "fontSize": 16,
+            "backgroundColor": "#f1f",
+            "flex": 1,
+            "flexDirection": "column",
           }
         }
-        uppercase={false}
-        virtual={undefined}
       >
-        1st
-      </Text>
-    </View>
-    <View
-      style={
-        Object {
-          "backgroundColor": "#ddd",
-          "height": "100%",
-          "width": 75,
-        }
-      }
-    >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#000",
+              "fontFamily": "System",
+              "fontSize": 16,
+            }
+          }
+          uppercase={false}
+          virtual={undefined}
+        >
+          Fixed width
+        </Text>
+      </View>
+      <View
         style={
           Object {
-            "color": "#000",
-            "fontFamily": "System",
-            "fontSize": 16,
+            "backgroundColor": "#ddd",
+            "flex": 1,
+            "flexDirection": "column",
+            "width": 75,
           }
         }
-        uppercase={false}
-        virtual={undefined}
       >
-        2nd
-      </Text>
-    </View>
-    <View
-      style={
-        Object {
-          "backgroundColor": "#fff",
-          "height": "100%",
-          "width": 75,
-        }
-      }
-    >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#000",
+              "fontFamily": "System",
+              "fontSize": 16,
+            }
+          }
+          uppercase={false}
+          virtual={undefined}
+        >
+          Fluid width
+        </Text>
+      </View>
+      <View
         style={
           Object {
-            "color": "#000",
-            "fontFamily": "System",
-            "fontSize": 16,
+            "backgroundColor": "#fff",
+            "flex": 1,
+            "flexDirection": "column",
+            "width": 75,
           }
         }
-        uppercase={false}
-        virtual={undefined}
       >
-        3rd
-      </Text>
-    </View>
-    <View
-      style={
-        Object {
-          "backgroundColor": "#fe1",
-          "height": "100%",
-          "width": 75,
-        }
-      }
-    >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#000",
+              "fontFamily": "System",
+              "fontSize": 16,
+            }
+          }
+          uppercase={false}
+          virtual={undefined}
+        >
+          Fluid width
+        </Text>
+      </View>
+      <View
         style={
           Object {
-            "color": "#000",
-            "fontFamily": "System",
-            "fontSize": 16,
+            "backgroundColor": "#fe1",
+            "flex": 1,
+            "flexDirection": "column",
+            "width": 75,
           }
         }
-        uppercase={false}
-        virtual={undefined}
       >
-        4th
-      </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#000",
+              "fontFamily": "System",
+              "fontSize": 16,
+            }
+          }
+          uppercase={false}
+          virtual={undefined}
+        >
+          Fluid width
+        </Text>
+      </View>
     </View>
   </View>
   <View
