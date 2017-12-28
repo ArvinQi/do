@@ -172,9 +172,10 @@ exports[`renders correctly 1`] = `
       <View
         style={
           Object {
-            "backgroundColor": "#f1f",
-            "flex": 1,
+            "flex": 0,
             "flexDirection": "column",
+            "height": "100%",
+            "width": 525,
           }
         }
       >
@@ -200,8 +201,9 @@ exports[`renders correctly 1`] = `
         style={
           Object {
             "backgroundColor": "#ddd",
-            "flex": 1,
+            "flex": 0,
             "flexDirection": "column",
+            "height": "100%",
             "width": 75,
           }
         }
@@ -228,8 +230,9 @@ exports[`renders correctly 1`] = `
         style={
           Object {
             "backgroundColor": "#fff",
-            "flex": 1,
+            "flex": 0,
             "flexDirection": "column",
+            "height": "100%",
             "width": 75,
           }
         }
@@ -256,8 +259,9 @@ exports[`renders correctly 1`] = `
         style={
           Object {
             "backgroundColor": "#fe1",
-            "flex": 1,
+            "flex": 0,
             "flexDirection": "column",
+            "height": "100%",
             "width": 75,
           }
         }

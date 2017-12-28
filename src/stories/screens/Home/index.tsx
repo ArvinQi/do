@@ -2,7 +2,7 @@ import * as React from "react";
 import {
   View,
   Dimensions,
-  NativeModules
+  NativeModules,
   // LayoutAnimation,
 } from "react-native";
 import { Col, Grid } from "react-native-easy-grid";
@@ -18,7 +18,7 @@ import {
   Body,
   Right,
   // List, ListItem,
-  Footer
+  Footer,
 } from "native-base";
 
 import styles from "./styles";
@@ -35,7 +35,7 @@ export interface Props {
   navigation: any;
   list: any;
 }
-export interface State {}
+export interface State { }
 class Home extends React.Component<Props, State> {
   state = {
     swipeBegin: 0,
@@ -44,21 +44,20 @@ class Home extends React.Component<Props, State> {
     [WIDTH_NAME[0]]: SCREEN_WIDTH / 10 * 7,
     [WIDTH_NAME[1]]: SCREEN_WIDTH / 10,
     [WIDTH_NAME[2]]: SCREEN_WIDTH / 10,
-    [WIDTH_NAME[3]]: SCREEN_WIDTH / 10
+    [WIDTH_NAME[3]]: SCREEN_WIDTH / 10,
   };
   constructor() {
     super();
-    this._onSwipe = this._onSwipe.bind(this);
-    this._onSwipeBegin = this._onSwipeBegin.bind(this);
-    this._onSwipeEnd = this._onSwipeEnd.bind(this);
+    this.onSwipe = this.onSwipe.bind(this);
+    this.onSwipeBegin = this.onSwipeBegin.bind(this);
+    this.onSwipeEnd = this.onSwipeEnd.bind(this);
   }
-  _onSwipeBegin(swipeBegin) {
-    this.setState({
-      swipeBegin: swipeBegin
-    });
+  onSwipeBegin({ nativeEvent }) {
+    console.log(nativeEvent.pageX);
   }
-  _onSwipe(locationX) {
-    console.log(locationX, SCREEN_WIDTH);
+  onSwipe(e) {
+    console.log(e);
+    // console.log(locationX, SCREEN_WIDTH);
     // let swipeWitdh = locationX - this.state.swipeBegin;
     // let oldActiveTab = this.state.activeTab;
     // // let oldActiveTabWith = this.state[WIDTH_NAME[oldActiveTab]] - swipeWitdh * 2;
@@ -87,11 +86,11 @@ class Home extends React.Component<Props, State> {
     // }
     // this.setState({
     //   activeTab
-      // [WIDTH_NAME[oldActiveTab]]: oldActiveTabWith,
-      // [WIDTH_NAME[nextTab]]: nextTabWith,
+    // [WIDTH_NAME[oldActiveTab]]: oldActiveTabWith,
+    // [WIDTH_NAME[nextTab]]: nextTabWith,
     // });
   }
-  _onSwipeEnd() {
+  onSwipeEnd() {
     // let activeTab = this.state.activeTab;
     // let newState = Object.assign(
     //   {
@@ -112,50 +111,47 @@ class Home extends React.Component<Props, State> {
   }
   render() {
     return <Container style={styles.container}>
-        <Header>
-          <Left>
-            <Button transparent>
-              <Icon active name="menu" onPress={() => this.props.navigation.navigate("DrawerOpen")} />
-            </Button>
-          </Left>
-          <Body>
-            <Title>D O</Title>
-          </Body>
-          <Right />
-        </Header>
-        <View style={{ flexDirection: "row", flex: 1, width: "100%", height: "100%" }} onStartShouldSetResponder={evt => {
-            this._onSwipeBegin(evt.nativeEvent.locationX);
-            {/*return true;*/}
-          }} onResponderMove={evt => {
-            this._onSwipe(evt.nativeEvent.locationX);
-          }} onResponderRelease={() => {
-            this._onSwipeEnd();
-          }}>
-          <Grid>
-            <Col style={{width: this.state[WIDTH_NAME[0]], height: "100%"}}>
-              <Text>Fixed width</Text>
-            </Col>
-            <Col style={{width: this.state[WIDTH_NAME[1]], height: "100%", backgroundColor: "#ddd"}}>
-              <Text>Fluid width</Text>
-            </Col>
-            <Col style={{width: this.state[WIDTH_NAME[2]], height: "100%", backgroundColor: "#fff"}}>
-              <Text>Fluid width</Text>
-            </Col>
-            <Col style={{width: this.state[WIDTH_NAME[3]], height: "100%", backgroundColor: "#fe1"}}>
-              <Text>Fluid width</Text>
-            </Col>
-          </Grid>
-        </View>
-        <Footer style={{ backgroundColor: "#F8F8F8" }}>
-          <View style={{ alignItems: "center", opacity: 0.5, flexDirection: "row" }}>
-            {/* <View padder> */}
-            <Text style={{ color: "#ec4c4c" }}>
-              Have none account?
+      <Header>
+        <Left>
+          <Button transparent>
+            <Icon active name="menu" onPress={() => this.props.navigation.navigate("DrawerOpen")} />
+          </Button>
+        </Left>
+        <Body>
+          <Title>D O</Title>
+        </Body>
+        <Right />
+      </Header>
+      {/* <View 
+      onStartShouldSetResponder={this.onSwipeBegin} 
+      onPanResponderMove={this.onSwipe} 
+      onResponderRelease={this.onSwipeEnd} 
+      style={style.view} > */}
+        <Grid>
+          <Col style={{ width: this.state[WIDTH_NAME[0]], height: "100%" }}>
+            <Text>Fixed width</Text>
+          </Col>
+          <Col style={{ width: this.state[WIDTH_NAME[1]], height: "100%", backgroundColor: "#ddd" }}>
+            <Text>Fluid width</Text>
+          </Col>
+          <Col style={{ width: this.state[WIDTH_NAME[2]], height: "100%", backgroundColor: "#fff" }}>
+            <Text>Fluid width</Text>
+          </Col>
+          <Col style={{ width: this.state[WIDTH_NAME[3]], height: "100%", backgroundColor: "#fe1" }}>
+            <Text>Fluid width</Text>
+          </Col>
+        </Grid>
+      {/* </View> */}
+      <Footer style={{ backgroundColor: "#F8F8F8" }}>
+        <View style={{ alignItems: "center", opacity: 0.5, flexDirection: "row" }}>
+          {/* <View padder> */}
+          <Text style={{ color: "#ec4c4c" }}>
+            Have none account?
             </Text>
-            {/* </View> */}
-          </View>
-        </Footer>
-      </Container>;
+          {/* </View> */}
+        </View>
+      </Footer>
+    </Container>;
   }
 }
 
