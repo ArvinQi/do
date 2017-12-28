@@ -149,141 +149,127 @@ exports[`renders correctly 1`] = `
     </View>
   </View>
   <View
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "flex": 1,
         "flexDirection": "row",
-        "height": "100%",
-        "width": "100%",
       }
     }
   >
     <View
       style={
         Object {
-          "flex": 1,
-          "flexDirection": "row",
+          "flex": 0,
+          "flexDirection": "column",
+          "height": "100%",
+          "width": 525,
         }
       }
     >
-      <View
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
         style={
           Object {
-            "flex": 0,
-            "flexDirection": "column",
-            "height": "100%",
-            "width": 525,
+            "color": "#000",
+            "fontFamily": "System",
+            "fontSize": 16,
           }
         }
+        uppercase={false}
+        virtual={undefined}
       >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Object {
-              "color": "#000",
-              "fontFamily": "System",
-              "fontSize": 16,
-            }
-          }
-          uppercase={false}
-          virtual={undefined}
-        >
-          Fixed width
-        </Text>
-      </View>
-      <View
+        Fixed width
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#ddd",
+          "flex": 0,
+          "flexDirection": "column",
+          "height": "100%",
+          "width": 75,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
         style={
           Object {
-            "backgroundColor": "#ddd",
-            "flex": 0,
-            "flexDirection": "column",
-            "height": "100%",
-            "width": 75,
+            "color": "#000",
+            "fontFamily": "System",
+            "fontSize": 16,
           }
         }
+        uppercase={false}
+        virtual={undefined}
       >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Object {
-              "color": "#000",
-              "fontFamily": "System",
-              "fontSize": 16,
-            }
-          }
-          uppercase={false}
-          virtual={undefined}
-        >
-          Fluid width
-        </Text>
-      </View>
-      <View
+        Fluid width
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fff",
+          "flex": 0,
+          "flexDirection": "column",
+          "height": "100%",
+          "width": 75,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
         style={
           Object {
-            "backgroundColor": "#fff",
-            "flex": 0,
-            "flexDirection": "column",
-            "height": "100%",
-            "width": 75,
+            "color": "#000",
+            "fontFamily": "System",
+            "fontSize": 16,
           }
         }
+        uppercase={false}
+        virtual={undefined}
       >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Object {
-              "color": "#000",
-              "fontFamily": "System",
-              "fontSize": 16,
-            }
-          }
-          uppercase={false}
-          virtual={undefined}
-        >
-          Fluid width
-        </Text>
-      </View>
-      <View
+        Fluid width
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#fe1",
+          "flex": 0,
+          "flexDirection": "column",
+          "height": "100%",
+          "width": 75,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
         style={
           Object {
-            "backgroundColor": "#fe1",
-            "flex": 0,
-            "flexDirection": "column",
-            "height": "100%",
-            "width": 75,
+            "color": "#000",
+            "fontFamily": "System",
+            "fontSize": 16,
           }
         }
+        uppercase={false}
+        virtual={undefined}
       >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Object {
-              "color": "#000",
-              "fontFamily": "System",
-              "fontSize": 16,
-            }
-          }
-          uppercase={false}
-          virtual={undefined}
-        >
-          Fluid width
-        </Text>
-      </View>
+        Fluid width
+      </Text>
     </View>
   </View>
   <View
