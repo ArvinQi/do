@@ -6,4 +6,4 @@ COPY ./nginx/ /etc/nginx/
 RUN apk add nginx \
     && mkdir -p /run/nginx
 
-CMD ["nginx"]
+CMD ["nginx", "-g", "daemon off;"]
