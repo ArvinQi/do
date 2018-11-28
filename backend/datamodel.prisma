@@ -1,6 +1,7 @@
 type User {
   id: ID! @unique
   name: String!
+  theme: String
 }
 type Do {
   id: ID! @unique
@@ -9,3 +10,35 @@ type Do {
   createTime: DateTime
   user: User!
 }
+type Device {
+  id: ID! @unique
+  name: String!
+}
+# type ThemeCommon {
+#   black: String
+#   white: String
+# }
+# type ThemeBackground {
+#   paper: String
+#   default: String
+# }
+# type ThemeOption {
+#   light: String
+#   main: String
+#   dark: String
+#   contrastText: String
+# }
+# type ThemeText {
+#   primary: String
+#   secondary: String
+#   disabled: String
+#   hint: String
+# }
+# type Theme {
+#   common: ThemeCommon
+#   background: ThemeBackground
+#   primary: ThemeOption @relation(name: "OptionForPrimary")
+#   secondary: ThemeOption @relation(name: "OptionForSecondary")
+#   error: ThemeOption @relation(name: "OptionForError")
+#   text: ThemeText
+# }

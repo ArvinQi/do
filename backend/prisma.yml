@@ -1,2 +1,9 @@
-endpoint: https://us1.prisma.sh/arvinqi/do/dev
+endpoint: ${env:PRISMA_ENDPOINT}
 datamodel: datamodel.prisma
+hooks:
+  post-deploy:
+      - graphql get-schema -p prisma
+      - prisma generate
+generate:
+  - generator: graphql-schema
+    output: ./src/generated/
