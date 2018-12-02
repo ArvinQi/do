@@ -1,10 +1,12 @@
 {
-    "envs": [
-        "browser",
-        "node",
-        "es6"
-    ],
-    "globals": [],
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true,
+        "commonjs": false,
+        "mocha": true
+    },
+    "globals": {},
     "extends": [
         "airbnb",
         "prettier",

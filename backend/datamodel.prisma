@@ -1,19 +1,35 @@
+# 艾森豪威尔法则
+#
+# 1 | 2
+#———————
+# 3 | 4
+#
+
+enum DO_TYPE {
+    DO_IT_NOW # 重要紧急1.立即做
+    DO_IT_LATER # 重要不紧急2. 稍后做
+    DELEGATE # 紧急不重要3. 授权做
+    DO_NOT_DO_IT # 不紧急不重要4. 不做
+}
+
 type User {
   id: ID! @unique
-  name: String!
+  phone: String!
+  name: String
   theme: String
 }
+
 type Do {
   id: ID! @unique
+  type: DO_TYPE!
   title: String!
   description: String
-  createTime: DateTime
+  deadline: DateTime
+  createTime: DateTime!
+  warnType: String
   user: User!
 }
-type Device {
-  id: ID! @unique
-  name: String!
-}
+
 # type ThemeCommon {
 #   black: String
 #   white: String
