@@ -1,8 +1,4 @@
-type AggregateDevice {
-  count: Int!
-}
-
-type AggregateDo {
+type AggregateThing {
   count: Int!
 }
 
@@ -16,176 +12,163 @@ type BatchPayload {
 
 scalar DateTime
 
-type Device {
+scalar Long
+
+type Mutation {
+  createThing(data: ThingCreateInput!): Thing!
+  updateThing(data: ThingUpdateInput!, where: ThingWhereUniqueInput!): Thing
+  updateManyThings(data: ThingUpdateManyMutationInput!, where: ThingWhereInput): BatchPayload!
+  upsertThing(where: ThingWhereUniqueInput!, create: ThingCreateInput!, update: ThingUpdateInput!): Thing!
+  deleteThing(where: ThingWhereUniqueInput!): Thing
+  deleteManyThings(where: ThingWhereInput): BatchPayload!
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
   id: ID!
-  name: String!
 }
 
-type DeviceConnection {
-  pageInfo: PageInfo!
-  edges: [DeviceEdge]!
-  aggregate: AggregateDevice!
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
 }
 
-input DeviceCreateInput {
-  name: String!
+type Query {
+  thing(where: ThingWhereUniqueInput!): Thing
+  things(where: ThingWhereInput, orderBy: ThingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Thing]!
+  thingsConnection(where: ThingWhereInput, orderBy: ThingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ThingConnection!
+  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  node(id: ID!): Node
 }
 
-type DeviceEdge {
-  node: Device!
-  cursor: String!
+type Subscription {
+  thing(where: ThingSubscriptionWhereInput): ThingSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
-enum DeviceOrderByInput {
-  id_ASC
-  id_DESC
-  name_ASC
-  name_DESC
-  createdAt_ASC
-  createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-}
-
-type DevicePreviousValues {
+type Thing {
   id: ID!
-  name: String!
-}
-
-type DeviceSubscriptionPayload {
-  mutation: MutationType!
-  node: Device
-  updatedFields: [String!]
-  previousValues: DevicePreviousValues
-}
-
-input DeviceSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: DeviceWhereInput
-  AND: [DeviceSubscriptionWhereInput!]
-  OR: [DeviceSubscriptionWhereInput!]
-  NOT: [DeviceSubscriptionWhereInput!]
-}
-
-input DeviceUpdateInput {
-  name: String
-}
-
-input DeviceWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
-  AND: [DeviceWhereInput!]
-  OR: [DeviceWhereInput!]
-  NOT: [DeviceWhereInput!]
-}
-
-input DeviceWhereUniqueInput {
-  id: ID
-}
-
-type Do {
-  id: ID!
+  type: THING_TYPE!
   title: String!
   description: String
-  createTime: DateTime
+  deadline: DateTime
+  createTime: DateTime!
+  warnType: String
   user: User!
 }
 
-type DoConnection {
-  pageInfo: PageInfo!
-  edges: [DoEdge]!
-  aggregate: AggregateDo!
+enum THING_TYPE {
+  DO_IT_NOW
+  DO_IT_LATER
+  DELEGATE
+  DO_NOT_DO_IT
 }
 
-input DoCreateInput {
+type ThingConnection {
+  pageInfo: PageInfo!
+  edges: [ThingEdge]!
+  aggregate: AggregateThing!
+}
+
+input ThingCreateInput {
+  type: THING_TYPE!
   title: String!
   description: String
-  createTime: DateTime
+  deadline: DateTime
+  createTime: DateTime!
+  warnType: String
   user: UserCreateOneInput!
 }
 
-type DoEdge {
-  node: Do!
+type ThingEdge {
+  node: Thing!
   cursor: String!
 }
 
-enum DoOrderByInput {
+enum ThingOrderByInput {
   id_ASC
   id_DESC
+  type_ASC
+  type_DESC
   title_ASC
   title_DESC
   description_ASC
   description_DESC
+  deadline_ASC
+  deadline_DESC
   createTime_ASC
   createTime_DESC
+  warnType_ASC
+  warnType_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
   updatedAt_DESC
 }
 
-type DoPreviousValues {
+type ThingPreviousValues {
   id: ID!
+  type: THING_TYPE!
   title: String!
   description: String
-  createTime: DateTime
+  deadline: DateTime
+  createTime: DateTime!
+  warnType: String
 }
 
-type DoSubscriptionPayload {
+type ThingSubscriptionPayload {
   mutation: MutationType!
-  node: Do
+  node: Thing
   updatedFields: [String!]
-  previousValues: DoPreviousValues
+  previousValues: ThingPreviousValues
 }
 
-input DoSubscriptionWhereInput {
+input ThingSubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: DoWhereInput
-  AND: [DoSubscriptionWhereInput!]
-  OR: [DoSubscriptionWhereInput!]
-  NOT: [DoSubscriptionWhereInput!]
+  node: ThingWhereInput
+  AND: [ThingSubscriptionWhereInput!]
+  OR: [ThingSubscriptionWhereInput!]
+  NOT: [ThingSubscriptionWhereInput!]
 }
 
-input DoUpdateInput {
+input ThingUpdateInput {
+  type: THING_TYPE
   title: String
   description: String
+  deadline: DateTime
   createTime: DateTime
+  warnType: String
   user: UserUpdateOneRequiredInput
 }
 
-input DoWhereInput {
+input ThingUpdateManyMutationInput {
+  type: THING_TYPE
+  title: String
+  description: String
+  deadline: DateTime
+  createTime: DateTime
+  warnType: String
+}
+
+input ThingWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -200,6 +183,10 @@ input DoWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  type: THING_TYPE
+  type_not: THING_TYPE
+  type_in: [THING_TYPE!]
+  type_not_in: [THING_TYPE!]
   title: String
   title_not: String
   title_in: [String!]
@@ -228,6 +215,14 @@ input DoWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
+  deadline: DateTime
+  deadline_not: DateTime
+  deadline_in: [DateTime!]
+  deadline_not_in: [DateTime!]
+  deadline_lt: DateTime
+  deadline_lte: DateTime
+  deadline_gt: DateTime
+  deadline_gte: DateTime
   createTime: DateTime
   createTime_not: DateTime
   createTime_in: [DateTime!]
@@ -236,78 +231,35 @@ input DoWhereInput {
   createTime_lte: DateTime
   createTime_gt: DateTime
   createTime_gte: DateTime
+  warnType: String
+  warnType_not: String
+  warnType_in: [String!]
+  warnType_not_in: [String!]
+  warnType_lt: String
+  warnType_lte: String
+  warnType_gt: String
+  warnType_gte: String
+  warnType_contains: String
+  warnType_not_contains: String
+  warnType_starts_with: String
+  warnType_not_starts_with: String
+  warnType_ends_with: String
+  warnType_not_ends_with: String
   user: UserWhereInput
-  AND: [DoWhereInput!]
-  OR: [DoWhereInput!]
-  NOT: [DoWhereInput!]
+  AND: [ThingWhereInput!]
+  OR: [ThingWhereInput!]
+  NOT: [ThingWhereInput!]
 }
 
-input DoWhereUniqueInput {
+input ThingWhereUniqueInput {
   id: ID
-}
-
-scalar Long
-
-type Mutation {
-  createDevice(data: DeviceCreateInput!): Device!
-  updateDevice(data: DeviceUpdateInput!, where: DeviceWhereUniqueInput!): Device
-  updateManyDevices(data: DeviceUpdateInput!, where: DeviceWhereInput): BatchPayload!
-  upsertDevice(where: DeviceWhereUniqueInput!, create: DeviceCreateInput!, update: DeviceUpdateInput!): Device!
-  deleteDevice(where: DeviceWhereUniqueInput!): Device
-  deleteManyDevices(where: DeviceWhereInput): BatchPayload!
-  createDo(data: DoCreateInput!): Do!
-  updateDo(data: DoUpdateInput!, where: DoWhereUniqueInput!): Do
-  updateManyDoes(data: DoUpdateInput!, where: DoWhereInput): BatchPayload!
-  upsertDo(where: DoWhereUniqueInput!, create: DoCreateInput!, update: DoUpdateInput!): Do!
-  deleteDo(where: DoWhereUniqueInput!): Do
-  deleteManyDoes(where: DoWhereInput): BatchPayload!
-  createUser(data: UserCreateInput!): User!
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  deleteUser(where: UserWhereUniqueInput!): User
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
-}
-
-enum MutationType {
-  CREATED
-  UPDATED
-  DELETED
-}
-
-interface Node {
-  id: ID!
-}
-
-type PageInfo {
-  hasNextPage: Boolean!
-  hasPreviousPage: Boolean!
-  startCursor: String
-  endCursor: String
-}
-
-type Query {
-  device(where: DeviceWhereUniqueInput!): Device
-  devices(where: DeviceWhereInput, orderBy: DeviceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Device]!
-  devicesConnection(where: DeviceWhereInput, orderBy: DeviceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DeviceConnection!
-  do(where: DoWhereUniqueInput!): Do
-  does(where: DoWhereInput, orderBy: DoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Do]!
-  doesConnection(where: DoWhereInput, orderBy: DoOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DoConnection!
-  user(where: UserWhereUniqueInput!): User
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
-  node(id: ID!): Node
-}
-
-type Subscription {
-  device(where: DeviceSubscriptionWhereInput): DeviceSubscriptionPayload
-  do(where: DoSubscriptionWhereInput): DoSubscriptionPayload
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
 type User {
   id: ID!
-  name: String!
+  email: String!
+  password: String!
+  name: String
   theme: String
 }
 
@@ -318,7 +270,9 @@ type UserConnection {
 }
 
 input UserCreateInput {
-  name: String!
+  email: String!
+  password: String!
+  name: String
   theme: String
 }
 
@@ -335,6 +289,10 @@ type UserEdge {
 enum UserOrderByInput {
   id_ASC
   id_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
   name_ASC
   name_DESC
   theme_ASC
@@ -347,7 +305,9 @@ enum UserOrderByInput {
 
 type UserPreviousValues {
   id: ID!
-  name: String!
+  email: String!
+  password: String!
+  name: String
   theme: String
 }
 
@@ -370,11 +330,22 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateDataInput {
+  email: String
+  password: String
   name: String
   theme: String
 }
 
 input UserUpdateInput {
+  email: String
+  password: String
+  name: String
+  theme: String
+}
+
+input UserUpdateManyMutationInput {
+  email: String
+  password: String
   name: String
   theme: String
 }
@@ -406,6 +377,34 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
   name: String
   name_not: String
   name_in: [String!]
@@ -441,4 +440,5 @@ input UserWhereInput {
 
 input UserWhereUniqueInput {
   id: ID
+  email: String
 }

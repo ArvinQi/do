@@ -5,7 +5,7 @@
 # 3 | 4
 #
 
-enum DO_TYPE {
+enum THING_TYPE {
     DO_IT_NOW # 重要紧急1.立即做
     DO_IT_LATER # 重要不紧急2. 稍后做
     DELEGATE # 紧急不重要3. 授权做
@@ -14,14 +14,15 @@ enum DO_TYPE {
 
 type User {
   id: ID! @unique
-  phone: String!
+  email: String! @unique
+  password: String!
   name: String
   theme: String
 }
 
-type Do {
+type Thing {
   id: ID! @unique
-  type: DO_TYPE!
+  type: THING_TYPE!
   title: String!
   description: String
   deadline: DateTime

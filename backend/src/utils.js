@@ -1,17 +1,20 @@
-function hasPermission(user, permissionsNeeded) {
-  const matchedPermissions = user.permissions.filter(permissionTheyHave =>
-    permissionsNeeded.includes(permissionTheyHave)
-  );
-  if (!matchedPermissions.length) {
-    throw new Error(`You do not have sufficient permissions
+exports.hasPermission = function hasPermission(user, permissionsNeeded) {
+    const matchedPermissions = user.permissions.filter(permissionTheyHave =>
+        permissionsNeeded.includes(permissionTheyHave)
+    );
+    if (!matchedPermissions.length) {
+        throw new Error(`You do not have sufficient permissions
 
-      : ${permissionsNeeded}
+        : ${permissionsNeeded}
 
-      You Have:
+        You Have:
 
-      ${user.permissions}
-      `);
-  }
-}
+        ${user.permissions}
+        `);
+    }
+};
 
-exports.hasPermission = hasPermission;
+exports.isEmail = function (email) {
+    const reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+    return reg.test(email);
+};

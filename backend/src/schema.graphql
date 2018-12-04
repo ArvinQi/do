@@ -1,9 +1,19 @@
 # import * from './generated/prisma.graphql'
 
+type SuccessMessage {
+    message: String
+}
+
 type Mutation {
-  haha: String
+    signup(email: String!, password: String!): User
+    signin(email: String!, password: String!): User!
+    signout(email: String!): SuccessMessage
+    createThing(type: String!, title: String!, description: String, deadline: String, warnType: String): Thing!
+    updateThing(id: ID!, data: ThingUpdateInput!): Thing!
+    deleteThing(id: ID!): Thing
 }
 
 type Query {
-  haha: String
+    me: User
+    things(where: ThingWhereInput, orderBy: ThingOrderByInput): [Thing]!
 }
