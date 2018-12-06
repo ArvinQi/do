@@ -22,7 +22,7 @@ type User {
 
 type Thing {
   id: ID! @unique
-  type: THING_TYPE!
+  type: THING_TYPE
   title: String!
   description: String
   deadline: DateTime

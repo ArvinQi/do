@@ -16,7 +16,6 @@ const mutations = {
         if (isUserExist) {
             throw new Error(`email(${args.email}) is already exist`);
         }
-        console.log(info);
         // create the user in the database
         const user = await ctx.db.mutation.createUser(
             {
@@ -82,10 +81,7 @@ const mutations = {
                             id: ctx.request.userId
                         }
                     },
-                    type: {
-                        value: args.type
-                    },
-                    createTime: Date.now()
+                    createTime: new Date()
                 }
             },
             info
