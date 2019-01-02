@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "npm run format & next -p 9001",
+        "dev": "next -p 9001",
         "build": "next build",
         "start": "next start",
         "format": "onchange 'components/**/*.js' 'pages/**/*.js' 'lib/**/*.js' -- eslint --fix -c .eslint.yml {{changed}}",
