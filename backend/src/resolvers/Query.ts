@@ -1,6 +1,6 @@
-const {forwardTo} = require('prisma-binding');
+import {forwardTo} from 'prisma-binding';
 
-const Query = {
+export default {
     things: forwardTo('db'),
     me(parent, args, ctx, info) {
         // check if there is a current user ID
@@ -15,5 +15,3 @@ const Query = {
         );
     }
 };
-
-module.exports = Query;

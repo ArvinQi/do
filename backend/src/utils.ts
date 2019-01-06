@@ -1,4 +1,4 @@
-exports.hasPermission = function hasPermission(user, permissionsNeeded) {
+export function hasPermission(user, permissionsNeeded) {
     const matchedPermissions = user.permissions.filter(permissionTheyHave =>
         permissionsNeeded.includes(permissionTheyHave)
     );
@@ -14,7 +14,7 @@ exports.hasPermission = function hasPermission(user, permissionsNeeded) {
     }
 };
 
-exports.isEmail = function (email) {
+export function isEmail(email) {
     const reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
     return reg.test(email);
 };

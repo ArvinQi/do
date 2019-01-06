@@ -1,8 +1,8 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const {isEmail} = require('../utils');
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import {isEmail} from '../utils';
 
-const mutations = {
+export default {
     async signup(parent, args, ctx, info) {
         // if email is valid
         if (!isEmail(args.email)) {
@@ -121,5 +121,3 @@ const mutations = {
         return ctx.db.mutation.deleteThing({where}, info);
     }
 };
-
-module.exports = mutations;
