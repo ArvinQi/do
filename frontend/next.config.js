@@ -12,6 +12,7 @@ if (typeof require !== 'undefined') {
 }
 
 module.exports = withTypescript({
+    distDir: 'dist',
     // cssModules: true,
     // cssLoaderOptions: {
     //     importLoaders: 1,

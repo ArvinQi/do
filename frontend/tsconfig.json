@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "allowJs": true,
+        "esModuleInterop": true,
+        "target": "es6",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "outDir": "dist",
+        "baseUrl": ".",
+        "jsx": "react",
+        "typeRoots": [
+            "./node_modules/@types",
+            "./typings"
+        ],
+        "paths": {
+            "*": [
+                "node_modules/*"
+            ]
+        },
+        "lib": [
+            "es6",
+            "dom",
+            "esnext.asynciterable"
+        ]
+    }
+}

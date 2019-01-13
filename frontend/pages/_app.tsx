@@ -1,3 +1,4 @@
+import * as React from 'react';
 import App, {Container} from 'next/app';
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import {ThemeProvider} from 'styled-components';

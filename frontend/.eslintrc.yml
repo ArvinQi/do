@@ -12,12 +12,6 @@ rules:
     -
       before: false
       after: true
-  babel/new-cap:
-    - 2
-    -
-      capIsNewExceptions:
-        - "T"
-        - "AddToFavoritesBar"
   array-bracket-spacing:
     - 2
     - "never"
@@ -323,7 +317,6 @@ rules:
     - "always"
   react/prefer-stateless-function: 2
   react/prop-types: 2
-  react/react-in-jsx-scope: 0
   react/require-default-props: 2
   react/require-optimization: 0
   react/require-render-return: 2

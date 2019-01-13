@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -6,7 +6,7 @@ const Wrapper = styled.div`
     width: 100vw;
 `;
 
-class App extends Component {
+class App extends React.Component {
     state = {
         drawer: false,
         positionX: 50,

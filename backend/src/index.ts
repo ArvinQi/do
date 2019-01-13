@@ -1,16 +1,20 @@
 import cookieParser from 'cookie-parser';
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
+import './config';
 import createServer from './createServer';
 import db from './db';
-dotenv.config({path: 'variables.env'});
 
 const server = createServer();
 
 server.express.use(cookieParser());
 
+interface IReqest extends Request {
+    userId: string;
+    user: any;
+    cookies: any;
+}
 // decode the JWT so we can get the user Id on each request
-server.express.use((req, res, next) => {
+server.express.use((req: IReqest, res: any, next: any) => {
     const {token} = req.cookies;
     if (token) {
         const {userId} = jwt.verify(token, process.env.APP_SECRET);
@@ -22,7 +26,7 @@ server.express.use((req, res, next) => {
 
 // 2. Create a middleware that populates the user on each request
 
-server.express.use(async (req, res, next) => {
+server.express.use(async (req: IReqest, res: any, next: any) => {
     // if they aren't logged in, skip this
     if (!req.userId) {
         return next();
