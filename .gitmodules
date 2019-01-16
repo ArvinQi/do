@@ -1,0 +1,12 @@
+[submodule "do-portal"]
+	path = do-portal
+	url = git@github.com:ArvinQi/do-portal.git
+[submodule "do-nginx"]
+	path = do-nginx
+	url = git@github.com:ArvinQi/do-nginx.git
+[submodule "do-api"]
+	path = do-api
+	url = git@github.com:ArvinQi/do-api.git
+[submodule "do-dashboard"]
+	path = do-dashboard
+	url = git@github.com:ArvinQi/do-dashboard.git
